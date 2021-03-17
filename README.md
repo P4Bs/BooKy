@@ -1,5 +1,5 @@
 # g5-restaurante
-MIEMBROS: Pablo Moreno, Francisco Javier Jimenez Montes, Roberto, Victor Gomez, Angel Garcia, Alejandro Moreno<br/>
+MIEMBROS: Pablo Moreno, Francisco Javier Jimenez Montes, Roberto, Victor Gomez, Angel Garcia, Alejandro Moreno,Juan Marques<br/>
 ROLES:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;
 Desarrollador:<br/>
