@@ -1,2 +1,4 @@
 # g5-restaurante
-Francisco Javier Jimenez Montes
+=======
+Miembros: Pablo Moreno,Francisco Javier Jimenez Montes
+>>>>>>> a66ea7beddceef4e7740c84191bcc7b1a8618675
