@@ -2,6 +2,6 @@
 MIEMBROS: Pablo Moreno, Francisco Javier Jimenez Montes, Roberto, Victor, Angel Garcia, Alejandro Moreno<br/>
 ROLES:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;
-Desarrollador:<br\>
+Desarrollador:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Francisco Javier Jimenez Montes<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pablo Jesus Moreno Polo<br/>
