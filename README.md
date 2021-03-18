@@ -13,6 +13,7 @@
 ### Coordinador
 
 ### Analistas
+- Juan Alejandro Moreno Berrocal<br/>
 
 ### Arquitectos
 - Francisco Javier Jimenez Montes<br/>
@@ -23,3 +24,4 @@
 - Pablo Jesús Moreno Polo<br/>
 
 ### Testers
+- Juan Alejandro Moreno Berrocal<br/>
