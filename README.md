@@ -10,6 +10,16 @@
 - Victor Manuel Gomez Garrido
 
 ## ROLES
+### Coordinador
+
+### Analistas
+
+### Arquitectos
+- Francisco Javier Jimenez Montes<br/>
+- Pablo Jesús Moreno Polo<br/>
+
 ### Desarrolladores
 - Francisco Javier Jimenez Montes<br/>
 - Pablo Jesús Moreno Polo<br/>
+
+### Testers
