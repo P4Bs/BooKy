@@ -1,5 +1,5 @@
 # g5-restaurante
-## MIEMBROS
+## <span stye="color:red"> some MIEMBROS.* text</span>
 - Angel García Lozano
 - Francisco Javier Coca Sores
 - Francisco Javier Jiménez Montes
@@ -9,7 +9,7 @@
 - Roberto Sotano Illescas
 - Victor Manuel Gomez Garrido
 
-## ROLES
+## <span style="color:green"> some ROLES.* text</span>
 ### Coordinador
 
 ### Analistas
