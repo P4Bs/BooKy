@@ -11,11 +11,11 @@
 
 ## ROLES
 ### Coordinadores
-- Juan Marques Garrido<br/>
+- Juan Marqués Garrido<br/>
 
 ### Analistas
 - Juan Alejandro Moreno Berrocal<br/>
-- Juan Marques Garrido<br/>
+- Juan Marqués Garrido<br/>
 
 ### Arquitectos
 - Francisco Javier Jiménez Montes<br/>
