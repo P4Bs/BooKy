@@ -10,6 +10,6 @@
 - Victor Manuel Gomez Garrido
 
 ## ROLES
-&nbsp;&nbsp;&nbsp;&nbsp;Desarrolladores<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Francisco Javier Jimenez Montes<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pablo Jesús Moreno Polo<br/>
+### Desarrolladores
+- Francisco Javier Jimenez Montes<br/>
+- Pablo Jesús Moreno Polo<br/>
