@@ -1,13 +1,15 @@
 # g5-restaurante
-## MIEMBROS.
-- Pablo Jesús Moreno Polo
-- Francisco Javier Jimenez Montes
-- Roberto Sotano Illescas
-- Victor Gomez
-- Angel Garcia
+## MIEMBROS
+- Angel García Lozano
+- Francisco Javier Coca Sores
+- Francisco Javier Jiménez Montes
 - Juan Alejandro Moreno Berrocal
-- Juan Marques
-## ROLES.
-&nbsp;&nbsp;&nbsp;&nbsp;Desarrolladores.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Francisco Javier Jimenez Montes.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pablo Jesús Moreno Polo.
+- Juan Marques Garrido
+- Pablo Jesús Moreno Polo
+- Roberto Sotano Illescas
+- Victor Manuel Gomez Garrido
+
+## ROLES
+&nbsp;&nbsp;&nbsp;&nbsp;Desarrolladores<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Francisco Javier Jimenez Montes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pablo Jesús Moreno Polo<br/>
