@@ -11,6 +11,7 @@
 
 ## ROLES
 ### Coordinadores
+- Francisco Javier Coca Sores<br/>
 - Juan Marqués Garrido<br/>
 
 ### Analistas
@@ -26,4 +27,5 @@
 - Pablo Jesús Moreno Polo<br/>
 
 ### Testers
+- Francisco Javier Coca Sores<br/>
 - Juan Alejandro Moreno Berrocal<br/>
