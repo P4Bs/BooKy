@@ -13,10 +13,12 @@
 ### Coordinadores
 - Francisco Javier Coca Sores<br/>
 - Juan Marqués Garrido<br/>
+- Roberto Sotano Illescas<br/>
 
 ### Analistas
 - Juan Alejandro Moreno Berrocal<br/>
 - Juan Marqués Garrido<br/>
+- Roberto Sotano Illescas<br/>
 
 ### Arquitectos
 - Francisco Javier Jiménez Montes<br/>
