@@ -23,6 +23,7 @@
 ### Arquitectos
 - Francisco Javier Jiménez Montes<br/>
 - Pablo Jesús Moreno Polo<br/>
+- Angel García Lozano<br/>
 
 ### Desarrolladores
 - Francisco Javier Jiménez Montes<br/>
