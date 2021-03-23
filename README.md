@@ -24,11 +24,14 @@
 - Francisco Javier Jiménez Montes<br/>
 - Pablo Jesús Moreno Polo<br/>
 - Angel García Lozano<br/>
+- Victor Manuel Gómez Garrido<br/>
 
 ### Desarrolladores
 - Francisco Javier Jiménez Montes<br/>
 - Pablo Jesús Moreno Polo<br/>
+- Victor Manuel Gómez Garrido<br/>
 
 ### Testers
 - Francisco Javier Coca Sores<br/>
 - Juan Alejandro Moreno Berrocal<br/>
+- Angel García Lozano<br/>
