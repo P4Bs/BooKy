@@ -15,6 +15,7 @@ public class Usuario {
     private Bitmap imagen;
     private String contrasenya;
     private int NumTelefono;
+    private String correo;
     private boolean esAdmin;
 
     public Usuario(int ID, String nombre, String contrasenya){
@@ -61,6 +62,14 @@ public class Usuario {
 
     public void setNumTelefono(int numTelefono) {
         NumTelefono = numTelefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public boolean isEsAdmin() {
