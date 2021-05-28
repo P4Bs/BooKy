@@ -35,28 +35,23 @@
         android:layout_width="158dp"
         android:layout_height="58dp"
         android:layout_gravity="start"
-        android:layout_marginStart="116dp"
-        android:layout_marginLeft="116dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginTop="44dp"
         android:text="@string/Iniciar_Sesion"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="#098BFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contraseña" />
+        app:layout_constraintTop_toBottomOf="@+id/contraseña" />
 
     <Button
         android:id="@+id/registrarse"
         android:layout_width="352dp"
         android:layout_height="54dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="72dp"
         android:text="@string/Invitar_Iniciar_Sesion"
+        app:backgroundTint="#098BFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iniciarSesion"
-        app:layout_constraintVertical_bias="0.687" />
+        app:layout_constraintTop_toBottomOf="@+id/iniciarSesion" />
 
     <EditText
         android:id="@+id/contraseña"
