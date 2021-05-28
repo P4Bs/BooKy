@@ -36,21 +36,21 @@ public class RegistrarseActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
                 } else{
                     DatabaseHelper databaseHelper = new DatabaseHelper(RegistrarseActivity.this);
-                    Usuario usuario = new Usuario(-1, email.getText().toString());
-                    usuario.setContrasenya(contraseña.getText().toString());
-                    usuario.setNombre(nombre.getText().toString());
-                    usuario.setNumTelefono(telefono.getText().toString());
-                    if(soyAdmin.isChecked()){
-                        usuario.setEsAdmin(true);
-                    } else{
-                        usuario.setEsAdmin(false);
-                    }
+                    String emailUsuario, contrasenyaUsuario;
+                    emailUsuario = email.getText().toString();
+                    contrasenyaUsuario = contraseña.getText().toString();
 
-                    if(databaseHelper.estaElUsuario(usuario)){
+                    if(databaseHelper.estaElUsuario(emailUsuario)){
                         Toast.makeText(getApplicationContext(), "El usuario indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
                     } else{
-                        databaseHelper.anyadeUsuario(usuario);
+                        Usuario nuevoUsuario = new Usuario(-1, emailUsuario, contrasenyaUsuario);
+                        nuevoUsuario.setNumTelefono(telefono.getText().toString());
+                        nuevoUsuario.setNombre(nombre.getText().toString());
+                        nuevoUsuario.setEsAdmin(soyAdmin.isChecked());
+
+                        databaseHelper.anyadeUsuario(nuevoUsuario);
                         Toast.makeText(getApplicationContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                        // TODO: VISTAS DE PANTALLA DE USUARIO
                     }
                 }
             }

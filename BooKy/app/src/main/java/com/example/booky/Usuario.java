@@ -18,17 +18,11 @@ public class Usuario {
     private String correo;
     private boolean esAdmin;
 
-    //Nuevo Usuario
-    public Usuario(int ID, String correo){
-        this.ID = ID;
-        this.correo = correo;
-    }
-
     //Usuario de la base de datos
     public Usuario(int ID, String correo, String contrasenya){
         this.ID = ID;
         this.correo= correo;
-        this.contrasenya = contrasenya;
+        this.contrasenya = getSHA1(contrasenya);
     }
 
     public int getID() {
@@ -93,6 +87,7 @@ public class Usuario {
         return outputStream.toByteArray();
     }
 
+    // TODO: ENCONTRAR UN FORMA DE QUITAR ESTO
     private static String getSHA1(String input){
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");

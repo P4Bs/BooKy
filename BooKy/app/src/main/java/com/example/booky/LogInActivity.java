@@ -3,10 +3,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LogInActivity extends AppCompatActivity {
     EditText email, contrasenya;
@@ -35,47 +40,43 @@ public class LogInActivity extends AppCompatActivity {
                 if (email.getText().toString().equals("") || contrasenya.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Email o contraseña vacios", Toast.LENGTH_SHORT).show();
                 } else{
-                    Usuario usuarioIntroducido = new Usuario(-1, email.getText().toString());
-                    usuarioIntroducido.setContrasenya(contrasenya.getText().toString());
-                    DatabaseHelper databaseHelper = new DatabaseHelper(LogInActivity.this);
-                    if(databaseHelper.estaElUsuario(usuarioIntroducido)){
-                        Usuario datosUsuario = databaseHelper.getElUsuario(usuarioIntroducido);
-                        if(datosUsuario.getContrasenya().equals(usuarioIntroducido.getContrasenya())){
-                            Toast.makeText(getApplicationContext(), "Bienvenido " + datosUsuario.getNombre(), Toast.LENGTH_SHORT).show();
-                        } else{
-                            Toast.makeText(getApplicationContext(), "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
-                        }
+                    String emailUsuario = email.getText().toString();
+                    String contrasenyaUsuario = getSHA1(contrasenya.getText().toString());
+                    DatabaseHelper baseDeDatos = new DatabaseHelper(LogInActivity.this);
+                    String esAdmin = baseDeDatos.esAdmin(emailUsuario, contrasenyaUsuario);
 
-                    } else{
+                    if(esAdmin == null) {
                         Toast.makeText(getApplicationContext(), "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
+                        if(esAdmin == "1"){ //
+                            //TODO: ABRIR VISTA ADMIN
+                        } else{
+                            //TODO : ABRIR VISA USURIOs
+                        }
                     }
                 }
             }
         });
-
-        /*
-        @Override
-            public void onClick(View v) {
-                if(email.getText().toString().equals("") || contrasenya.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "Email o contraseña vacios", Toast.LENGTH_SHORT).show();
-                } else{
-                    Usuario user = new Usuario(-1, email.getText().toString(), contrasenya.getText().toString());
-                    DatabaseHelper databaseHelper = new DatabaseHelper(LogInActivity.this);
-                    if(databaseHelper.estaElUsuario(user)){
-                        Toast.makeText(getApplicationContext(), "El usuario indicado ya se encuentra en la base de datos. Use un correo diferente", Toast.LENGTH_SHORT).show();
-                    } else{
-                        boolean correcto = databaseHelper.anyadeUsuario(user);
-                        if(correcto){
-                            Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            }
-         */
     }
 
     public void launchRegistrarseActivity(){
         Intent intent = new Intent(this, RegistrarseActivity.class);
         startActivity(intent);
+    }
+
+    private static String getSHA1(String input){
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

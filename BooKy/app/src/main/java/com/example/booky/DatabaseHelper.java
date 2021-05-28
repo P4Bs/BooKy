@@ -21,7 +21,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String ID = "ID";
     private static final String NOMBRE = "NOMBRE";
     private static final String CONTRASENYA = "CONTRASEÑA";
-    private static final String IMAGEN = "IMAGEN";
     private static final String TELF_USUARIO = "NUM_TELEFONO";
     private static final String EMAIL = "EMAIL";
     private static final String USUARIO_ADMIN = "ES_ADMINISTRADOR";
@@ -48,8 +47,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Method called first time database is accessed. All table creations must be coded here.
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String crearTablaUsuario = "CREATE TABLE " + USUARIO_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT, CONTRASEÑA TEXT, IMAGEN BLOB, NUM_TELEFONO TEXT, EMAIL TEXT, ES_ADMINISTRADOR BOOL);"; //FALTA IMAGEN
-        String crearTablaCarta = "CREATE TABLE " + CARTA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT UNIQUE, DESCRIPCION TEXT, IMAGEN BLOB, ALERGENOS TEXT, PRECIO INTEGER);";
+        String crearTablaUsuario = "CREATE TABLE " + USUARIO_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT, CONTRASEÑA TEXT, NUM_TELEFONO TEXT, EMAIL TEXT, ES_ADMINISTRADOR BOOL);"; //FALTA IMAGEN
+        String crearTablaCarta = "CREATE TABLE " + CARTA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT UNIQUE, DESCRIPCION TEXT, ALERGENOS TEXT, PRECIO INTEGER);";
         String crearTablaReserva = "CREATE TABLE " + RESERVA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, MESA TEXT, FECHA DATE, OCUPANTES INT, CANCELADA BOOLEAN, INTERVALO_TIEMPO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID));";
         String crearTablaCalificacion = "CREATE TABLE " + CALIFICACION_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, PLATO INTEGER, NOTA INTEGER, COMENTARIO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID), FOREIGN KEY(PLATO) REFERENCES CARTA(ID));";
 
@@ -84,7 +83,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cv.put(NOMBRE, plato.getNombre());
         cv.put(DESC_PLATO, plato.getDescripcion());
-        cv.put(IMAGEN, plato.getImagenAsByteArray());
         cv.put(ALERG_PLATO, plato.getAlergenos());
         cv.put(PRECIO, plato.getPrecio());
 
@@ -176,7 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean borrarReserva(Reserva reserva){
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + RESERVA_TABLA + " WHERE " + ID + " = " + reserva.getID();
+        String queryString = "DESLETE FROM " + RESERVA_TABLA + " WHERE " + ID + " = " + reserva.getID();
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
@@ -257,25 +255,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         TODO: BUSCAR USUARIOS
      */
 
-    public Usuario getElUsuario(Usuario user){
+    public boolean estaElUsuario(String email){
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + user.getCorreo() + "'";
-        Cursor cursor = db.rawQuery(queryString, null);
-        Usuario usuario = null;
-        if(cursor.moveToFirst()){
-            usuario = new Usuario(cursor.getInt(0), cursor.getString(5), cursor.getString(2));
-            usuario.setNombre(cursor.getString(1));
-            //TODO DISCUTIR SOBRE LAS IMAGENES
-            usuario.setNumTelefono(cursor.getString(4));
-            usuario.setEsAdmin(cursor.getInt(6) == 1 ? true : false);
-        }
-        return usuario;
-    }
-
-    public boolean estaElUsuario(Usuario user){
-        SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + user.getCorreo() + "'";
+        String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + email + "'";
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
+    }
+
+    public String esAdmin(String email, String contraseña){
+        Cursor cursor = devuelveElUsuario(email, contraseña);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(0);
+        } else {
+            return null;
+        }
+    }
+
+    private Cursor devuelveElUsuario(String email, String contraseña){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT " + USUARIO_ADMIN + " FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + email + "' AND " + CONTRASENYA + " = '" + contraseña + "'";
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        return cursor;
     }
 }
