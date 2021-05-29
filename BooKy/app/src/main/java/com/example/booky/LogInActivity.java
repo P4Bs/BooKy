@@ -49,7 +49,7 @@ public class LogInActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
-                        if(esAdmin == "1"){ //
+                        if(esAdmin.equals("1")){ //
                             //TODO: ABRIR VISTA ADMIN
                             launchMenuAdminActivity(emailUsuario);
                         } else{

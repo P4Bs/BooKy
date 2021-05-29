@@ -33,18 +33,22 @@ public class ayadirplatoActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
                 } else{
                     DatabaseHelper databaseHelper = new DatabaseHelper(ayadirplatoActivity.this);
-                    String nombreplato, descripcionplato, alergenosplatos,precioplato;
-                    nombreplato = nombre.getText().toString();
-                    descripcionplato = descripcion.getText().toString();
-                    alergenosplatos = alergenos.getText().toString();
-                    precioplato = precio.getText().toString();
+                    String nombrePlato, descripcionPlato, alergenosPlato,precioPlato;
+                    nombrePlato = nombre.getText().toString();
+                    descripcionPlato = descripcion.getText().toString();
+                    alergenosPlato = alergenos.getText().toString();
+                    precioPlato = precio.getText().toString();
 
-                    if(databaseHelper.estaELplato(nombreplato)){
-                        Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
-                    } else{
-                        Plato nuevoPlato = new Plato(-1,nombreplato,descripcionplato,alergenosplatos,Integer.parseInt(precioplato));
-                        databaseHelper.anyadePlato(nuevoPlato);
-                        Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
+                    precioPlato = formateaPrecio(precioPlato);
+
+                    if(precioPlato != null){
+                        if(databaseHelper.estaELplato(nombrePlato)){
+                            Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
+                        } else{
+                            Plato nuevoPlato = new Plato(-1, nombrePlato, descripcionPlato, alergenosPlato,Integer.parseInt(precioPlato));
+                            databaseHelper.anyadePlato(nuevoPlato);
+                            Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -53,6 +57,19 @@ public class ayadirplatoActivity extends AppCompatActivity {
 
     }
 
+    public String formateaPrecio(String precio){
+        String[] precioComas = precio.split(",");
+        String[] precioPunto = precio.split(".");
+        String precioFormateado;
 
+        if(precioComas.length > 2 || precioPunto.length> 1){
+            precioFormateado = null;
+            Toast.makeText(this, "El precio debe ser introducido con coma", Toast.LENGTH_SHORT).show();;
+
+        } else{
+            precioFormateado = precioComas[0] + precioComas[1];
+        }
+        return precioFormateado;
+    }
 
 }
