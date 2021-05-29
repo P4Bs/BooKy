@@ -22,7 +22,7 @@ public class CartaUsuarioActivity extends AppCompatActivity {
         List<Plato> todos_platos = baseDeDatos.get_lista_platos();
 
         ArrayAdapter platosArray = new ArrayAdapter<Plato>(CartaUsuarioActivity.this, android.R.layout.simple_list_item_1, todos_platos);
-        //lv_Plat
+        lv_platoslist.setAdapter(platosArray);
 
         Toast.makeText(CartaUsuarioActivity.this,todos_platos.toString(),Toast.LENGTH_SHORT).show();
 

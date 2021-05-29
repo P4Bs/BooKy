@@ -2,30 +2,24 @@ package com.example.booky;
 
 import android.graphics.Bitmap;
 
+import androidx.annotation.NonNull;
+
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Plato {
     private int ID;
     private String Nombre;
     private String Descripcion;
-    private List<String> Alergenos;
     private int Precio;
-    private String AlergenosConcat;
-
-    public Plato(int ID, String nombre, String descripcion, List<String> alergenos, int precio){
-        this.setID(ID);
-        this.setNombre(nombre);
-        this.setDescripcion(descripcion);
-        this.setAlergenos(alergenos);
-        this.setPrecio(precio);
-    }
+    private String Alergenos;
 
     public Plato(int ID, String nombre, String descripcion, String alergenos, int precio){
         this.setID(ID);
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
-        this.AlergenosConcat = alergenos;
+        this.Alergenos = alergenos;
         this.setPrecio(precio);
     }
 
@@ -53,20 +47,10 @@ public class Plato {
         Descripcion = descripcion;
     }
 
-    public String getAlergenos() {
-        return uneAlergenos(Alergenos);
-    }
+    public String getAlergenos() { return Alergenos; }
 
-    public void setAlergenos(List<String> alergenos) {
+    public void setAlergenos(String alergenos) {
         Alergenos = alergenos;
-    }
-
-    public void setAlergenosConcat(String alergenosConcat){
-        this.AlergenosConcat = alergenosConcat;
-    }
-
-    public String getAlergenosConcat(){
-        return this.AlergenosConcat;
     }
 
     public int getPrecio() {
@@ -76,6 +60,13 @@ public class Plato {
     public void setPrecio(int precio) {
         Precio = precio;
     }
+    
+    @Override
+    public String toString() {
+        String a = ""; 
+        a += "Nombre: " + Nombre + " .Descripcion: " + Descripcion + " .Alergenos: " + Alergenos + " .Precio: " + Precio + "€.";
+        return a;
+    }
 
     private static byte[] getBitmapAsByteArray(Bitmap bitmap){
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -83,14 +74,5 @@ public class Plato {
         return outputStream.toByteArray();
     }
 
-    private String uneAlergenos(List<String> alergenos){
-        String alergUnidos = "";
-        for(int i = 0; i < alergenos.size(); i++){
-            alergUnidos += alergenos.get(i);
-            if(i < alergenos.size() - 1){
-                alergUnidos += ", ";
-            }
-        }
-        return alergUnidos;
-    }
+
 }

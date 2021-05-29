@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -261,6 +262,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean estaElUsuario(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + email + "'";
+        Cursor cursor = db.rawQuery(queryString, null);
+        return cursor.moveToFirst();
+    }
+
+    public boolean estaELplato(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + NOMBRE + " = '" + email + "'";
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
