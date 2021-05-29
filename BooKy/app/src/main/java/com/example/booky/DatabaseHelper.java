@@ -266,9 +266,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.moveToFirst();
     }
 
-    public boolean estaELplato(String email){
+    public boolean estaELplato(String nombrePlato){
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + NOMBRE + " = '" + email + "'";
+        String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + NOMBRE + " = '" + nombrePlato + "'";
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }

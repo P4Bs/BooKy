@@ -27,6 +27,4 @@ public class CartaUsuarioActivity extends AppCompatActivity {
         Toast.makeText(CartaUsuarioActivity.this,todos_platos.toString(),Toast.LENGTH_SHORT).show();
 
     }
-
-
 }
