@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ayadirplatoActivity"></activity>
+        <activity android:name=".CalificacionActivity"></activity>
+        <activity android:name=".ayadirplatoActivity" />
         <activity android:name=".ComentarioVerActivity" />
         <activity android:name=".CartaUsuarioActivity" />
         <activity android:name=".CartaAdminActivity" />

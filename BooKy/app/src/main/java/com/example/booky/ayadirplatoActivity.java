@@ -39,15 +39,20 @@ public class ayadirplatoActivity extends AppCompatActivity {
                     alergenosPlato = alergenos.getText().toString();
                     precioPlato = precio.getText().toString();
 
-                    precioPlato = formateaPrecio(precioPlato);
+                    if(Integer.parseInt(precioPlato) < 100){
+                        Toast.makeText(getApplicationContext(), "El precio ha de ser mayor de 1 Euro", Toast.LENGTH_SHORT).show();
+                    } else {
+                        precioPlato = formateaPrecio(precioPlato);
 
-                    if(precioPlato != null){
-                        if(databaseHelper.estaELplato(nombrePlato)){
-                            Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
-                        } else{
-                            Plato nuevoPlato = new Plato(-1, nombrePlato, descripcionPlato, alergenosPlato,Integer.parseInt(precioPlato));
-                            databaseHelper.anyadePlato(nuevoPlato);
-                            Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
+                        if (precioPlato != null) {
+                            if (databaseHelper.estaELplato(nombrePlato)) {
+                                Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Plato nuevoPlato = new Plato(-1, nombrePlato, descripcionPlato, alergenosPlato, Integer.parseInt(precioPlato));
+                                databaseHelper.anyadePlato(nuevoPlato);
+                                Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
+                                finish(); //CIERRA LA ACTIVIDAD PORQUE EL PLATO FUE AÑADIDO EXITOSAMENTE
+                            }
                         }
                     }
                 }

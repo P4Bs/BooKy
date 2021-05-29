@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -34,7 +35,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String USUARIO = "USUARIO";
     private static final String MESA = "MESA";
-    private static final String FECHA_RES = "FECHA";
+    private static final String DIA_MES = "DIA";
+    private static final String MES = "MES";
+    // private static final String FECHA_RES = "FECHA";
     private static final String OCUPANTES = "OCUPANTES";
     private static final String RES_CANCEL = "CANCELADA";
     private static final String INT_TIEMP = "INTERVALO_TIEMPO";
@@ -52,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String crearTablaUsuario = "CREATE TABLE " + USUARIO_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT, CONTRASEÑA TEXT, NUM_TELEFONO TEXT, EMAIL TEXT, ES_ADMINISTRADOR BOOL);"; //FALTA IMAGEN
         String crearTablaCarta = "CREATE TABLE " + CARTA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT UNIQUE, DESCRIPCION TEXT, ALERGENOS TEXT, PRECIO INTEGER);";
-        String crearTablaReserva = "CREATE TABLE " + RESERVA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, MESA TEXT, FECHA DATE, OCUPANTES INT, CANCELADA BOOLEAN, INTERVALO_TIEMPO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID));";
+        String crearTablaReserva = "CREATE TABLE " + RESERVA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, MESA TEXT, DIA INT, MES INT, OCUPANTES INT, INTERVALO_TIEMPO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID));";
         String crearTablaCalificacion = "CREATE TABLE " + CALIFICACION_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, PLATO INTEGER, NOTA INTEGER, COMENTARIO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID), FOREIGN KEY(PLATO) REFERENCES CARTA(ID));";
 
         db.execSQL(crearTablaUsuario);
@@ -100,7 +103,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cv.put(USUARIO, usuario.getID());
         cv.put(MESA, reserva.getMesa());
-        cv.put(FECHA_RES, reserva.getFecha());
+        cv.put(DIA_MES, reserva.getDia());
+        cv.put(MES, reserva.getMes());
+        // cv.put(FECHA_RES, reserva.getFecha());
         cv.put(OCUPANTES, reserva.getOcupantes());
         cv.put(RES_CANCEL, reserva.isCancelada());
         cv.put(INT_TIEMP, reserva.getIntervaloTiempo());
@@ -190,14 +195,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 CAMBIAR CONTRASEÑA / DONE
                 CAMBIAR TELEFONO / DONE
                 CAMBIAR CORREO / DONE
-            CARTA
-                CAMBIAR DESCRIPCION PLATO
-                CAMBIAR TITULO PLATO
-                CAMBIAR ALERGENOS PLATO
-                CAMBIAR PRECIO PLATO
-            CALIFICACION
-                CAMBIAR NOTA
-                CAMBIAR COMENTARIO
      */
 
 
@@ -298,7 +295,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor getPlato(String nombre){
+    public Cursor getPlato(String nombre){ //OBTIENE UN PLATO DE LA BASE DE DATOS SEGUN SU NOMBRE
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + NOMBRE + " = '" + nombre + "'";
         Cursor cursor = db.rawQuery(queryString, null);
@@ -369,5 +366,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<Calificacion> getListaComentarios(int IDPlato){
+        List<Calificacion> calificaciones = new ArrayList<>();
+        String queryString = "SELECT * FROM " + CALIFICACION_TABLA + " WHERE " + ID + " = " + IDPlato;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                int ID = cursor.getInt(0);
+                int usuarioID = cursor.getInt(1);
+                int platoID = cursor.getInt(2);
+                int notaPlato = cursor.getInt(3);
+                String comentarioPlato = cursor.getString(4);
+
+                Calificacion nuevoComentario = new Calificacion(ID, usuarioID, platoID, notaPlato, comentarioPlato);
+                calificaciones.add(nuevoComentario);
+            } while(cursor.moveToFirst());
+        } else{
+
+        }
+        cursor.close();
+        db.close();
+        return calificaciones;
+    }
 
 }

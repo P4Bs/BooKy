@@ -37,8 +37,6 @@ public class CartaUsuarioActivity extends AppCompatActivity {
                 launchPlatoUsuarioActivity(plato);
             }
         });
-
-
     }
 
     public void launchPlatoUsuarioActivity(String plato){
