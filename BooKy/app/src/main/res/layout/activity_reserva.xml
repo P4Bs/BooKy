@@ -25,6 +25,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/nombre7"
+        android:layout_width="146dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="496dp"
+        android:layout_marginEnd="24dp"
+        android:hint="Dia de Mes(1-31)"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/nombre3"
         android:layout_width="150dp"
         android:layout_height="47dp"
@@ -40,6 +57,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre2" />
+
+    <EditText
+        android:id="@+id/nombre6"
+        android:layout_width="150dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:hint="Mes(1-12)"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre7" />
 
     <TextView
         android:id="@+id/textView5"
@@ -102,10 +136,12 @@
         android:id="@+id/button5"
         android:layout_width="294dp"
         android:layout_height="50dp"
+        android:background="#098BFF"
         android:text="reserva!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupTipoLugar"
-        tools:layout_editor_absoluteX="58dp" /><![CDATA[
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupTipoLugar" /><![CDATA[
 
 
 
