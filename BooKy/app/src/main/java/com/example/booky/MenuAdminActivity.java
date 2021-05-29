@@ -62,7 +62,7 @@ public class MenuAdminActivity extends AppCompatActivity {
     }
 
     private void lanzaActividad(Intent intent, String emailAdmin){
-        intent.putExtra("EMAIL_USUARIO", emailAdmin);
+        intent.putExtra("USUARIO_EMAIL", emailAdmin);
         startActivity(intent);
     }
 }

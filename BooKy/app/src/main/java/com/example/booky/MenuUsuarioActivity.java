@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MenuUsuarioActivity extends AppCompatActivity {
 
@@ -22,6 +23,8 @@ public class MenuUsuarioActivity extends AppCompatActivity {
         botonUsuario = findViewById(R.id.perfilAdmin);
         botonReserva = findViewById(R.id.accionesAdmin);
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
+
+        Toast.makeText(getApplicationContext(), emailUsuario, Toast.LENGTH_SHORT).show();
 
         botonReserva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +64,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
     }
 
     private void lanzaActividad(Intent intent){
-        intent.putExtra("EMAIL_USUARIO", emailUsuario);
+        intent.putExtra("USUARIO_EMAIL", emailUsuario);
         startActivity(intent);
     }
 }
