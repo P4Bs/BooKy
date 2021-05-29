@@ -52,8 +52,11 @@ public class RegistrarseActivity extends AppCompatActivity {
                         databaseHelper.anyadeUsuario(nuevoUsuario);
                         Toast.makeText(getApplicationContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
 
-                        launchMenuUsuarioActivity(emailUsuario);
-
+                        if(nuevoUsuario.isEsAdmin()){
+                            launchMenuAdminActivity(emailUsuario);
+                        } else {
+                            launchMenuUsuarioActivity(emailUsuario);
+                        }
                     }
                 }
             }
@@ -62,6 +65,15 @@ public class RegistrarseActivity extends AppCompatActivity {
 
     public void launchMenuUsuarioActivity(String emailUsuario){
         Intent intent = new Intent(this, MenuUsuarioActivity.class);
+        lanzaActivity(intent, emailUsuario);
+    }
+
+    public void launchMenuAdminActivity(String emailUsurio){
+        Intent intent = new Intent(this, MenuAdminActivity.class);
+        lanzaActivity(intent, emailUsurio);
+    }
+
+    private void lanzaActivity(Intent intent, String emailUsuario){
         intent.putExtra("Usuario_Email", emailUsuario);
         startActivity(intent);
     }

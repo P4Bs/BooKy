@@ -12,7 +12,6 @@ public class Usuario {
 
     private int ID;
     private String nombre;
-    private Bitmap imagen;
     private String contrasenya;
     private String NumTelefono;
     private String correo;
@@ -39,14 +38,6 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public byte[] getImagenByteArray() {
-        return getBitmapAsByteArray(this.imagen);
-    }
-
-    public void setImagen(Bitmap imagen) {
-        this.imagen = imagen;
     }
 
     public String getContrasenya() {
