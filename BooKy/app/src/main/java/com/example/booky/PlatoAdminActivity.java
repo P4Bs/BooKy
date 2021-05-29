@@ -38,7 +38,7 @@ public class PlatoAdminActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        nombrePlato = intent.getStringExtra("ID_PLATO");
+        IDPlato = intent.getIntExtra("ID_PLATO", 0);
         Cursor plato = baseDeDatos.getPlato(IDPlato);
 
         if(plato.moveToFirst()){

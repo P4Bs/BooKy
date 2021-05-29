@@ -32,7 +32,7 @@ public class ComentarioActivity extends AppCompatActivity {
         añadirComentario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String c
+                //String c
             }
         });
     }

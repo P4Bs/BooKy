@@ -54,16 +54,12 @@ public class CartaAdminActivity extends AppCompatActivity {
 
     public void launchayadirplatoActivity(String plato){
         Intent intent = new Intent(this, ayadirplatoActivity.class);
-        lanzaActividad(intent);
+        startActivity(intent);
     }
 
     public void launchPlatoAdminActivity(String plato){
         Intent intent = new Intent(this, PlatoAdminActivity.class);
-        lanzaActividad(intent);
-    }
-
-    private void lanzaActividad(Intent intent){
-        intent.putExtra("ID_PLATO", plato);
+        intent.putExtra("ID_PLATO", IDPlato);
         startActivity(intent);
     }
 }
