@@ -51,9 +51,10 @@ public class LogInActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
                         if(esAdmin == "1"){ //
                             //TODO: ABRIR VISTA ADMIN
+                            launchMenuAdminActivity(emailUsuario);
                         } else{
                             //TODO : ABRIR VISA USURIOs
-                            launchMenuUsuarioActivity(emailUsuario, false);
+                            launchMenuUsuarioActivity(emailUsuario);
                         }
                     }
                 }
@@ -66,10 +67,18 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void launchMenuUsuarioActivity(String emailUsuario, Boolean esAdmin){
+    public void launchMenuUsuarioActivity(String emailUsuario){
         Intent intent = new Intent(this, MenuUsuarioActivity.class);
+        lanzaElMenu(intent, emailUsuario);
+    }
+
+    public void launchMenuAdminActivity(String emailUsuario){
+        Intent intent = new Intent(this,MenuAdminActivity.class);
+        lanzaElMenu(intent, emailUsuario);
+    }
+
+    public void lanzaElMenu(Intent intent, String emailUsuario){
         intent.putExtra("USUARIO_EMAIL", emailUsuario);
-        intent.putExtra("ES_ADMIN", esAdmin);
         startActivity(intent);
     }
 

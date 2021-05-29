@@ -19,8 +19,8 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         botonCarta = findViewById(R.id.menu);
-        botonUsuario = findViewById(R.id.perfilUsuario);
-        botonReserva = findViewById(R.id.reservas);
+        botonUsuario = findViewById(R.id.perfilAdmin);
+        botonReserva = findViewById(R.id.accionesAdmin);
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
 
         botonReserva.setOnClickListener(new View.OnClickListener() {
@@ -33,7 +33,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
         botonUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchUsuarioActivity(emailUsuario);
+                launchPerfilUsuarioActivity(emailUsuario);
             }
         });
 
@@ -47,23 +47,27 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
     public void launchReservaActivity(String emailUsuario){
         Intent intent = new Intent(this, ReservaActivity.class);
-        iniciarActivity(intent);
+        iniciarReserva_Perfil(intent);
     }
 
-    public void launchUsuarioActivity(String emailUsuario){
-        Intent intent = new Intent(this, PerfilUsuarioActivity.class):
-        iniciarActivity(intent);
+    public void launchPerfilUsuarioActivity(String emailUsuario){
+        Intent intent = new Intent(this, PerfilUsuarioActivity.class);
+        iniciarReserva_Perfil(intent);
     }
 
     public void launchCartaActivity(String emailUsuario){
         Intent intent = new Intent(this, CartaActivity.class);
-        iniciarActivity(intent);
+        iniciarCarta(intent);
     }
 
-    private void iniciarActivity(Intent intent){
+    private void iniciarReserva_Perfil(Intent intent){
+        intent.putExtra("USUARIO_CORREO", emailUsuario);
+        startActivity(intent);
+    }
+
+    private void iniciarCarta(Intent intent){
         intent.putExtra("USUARIO_CORREO", emailUsuario);
         intent.putExtra("ES_ADMIN", false);
         startActivity(intent);
     }
-
 }
