@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -31,7 +32,15 @@ public class CartaAdminActivity extends AppCompatActivity {
         ArrayAdapter platosArray = new ArrayAdapter<Plato>(CartaAdminActivity.this, android.R.layout.simple_list_item_1, todos_platos);
         lv_platoslist.setAdapter(platosArray);
 
-        Toast.makeText(CartaAdminActivity.this,todos_platos.toString(),Toast.LENGTH_SHORT).show();
+
+        lv_platoslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Plato a = (Plato) parent.getItemAtPosition(position);
+                plato = a.getNombre();
+                launchPlatoAdminActivity(plato);
+            }
+        });
 
         boton_añadir = findViewById(R.id.Añadir_plato);
         boton_añadir.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +56,13 @@ public class CartaAdminActivity extends AppCompatActivity {
         lanzaActividad(intent);
     }
 
+    public void launchPlatoAdminActivity(String plato){
+        Intent intent = new Intent(this, PlatoAdminActivity.class);
+        lanzaActividad(intent);
+    }
+
     private void lanzaActividad(Intent intent){
-        intent.putExtra("USUARIO_CORREO", plato);
+        intent.putExtra("NOMBRE_PLATO", plato);
         startActivity(intent);
     }
 
