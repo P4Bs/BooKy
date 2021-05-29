@@ -3,6 +3,9 @@ package com.example.booky;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -11,6 +14,12 @@ import java.util.List;
 public class AdministracionAdminActivity extends AppCompatActivity {
 
     ListView hola;
+    private void recarga(DatabaseHelper ayuda){
+        List<Usuario> todos_usuarios = ayuda.get_lista_usuarios();
+        ArrayAdapter usuarioArray = new ArrayAdapter<Usuario>(AdministracionAdminActivity.this, android.R.layout.simple_list_item_1, todos_usuarios);
+        hola.setAdapter(usuarioArray);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +29,17 @@ public class AdministracionAdminActivity extends AppCompatActivity {
         hola = findViewById(R.id.hola);
 
         DatabaseHelper baseDeDatos = new DatabaseHelper(AdministracionAdminActivity.this);
-        List<Usuario> todos_usuarios = baseDeDatos.get_lista_usuarios();
 
-        ArrayAdapter usuarioArray = new ArrayAdapter<Usuario>(AdministracionAdminActivity.this, android.R.layout.simple_list_item_1, todos_usuarios);
-        hola.setAdapter(usuarioArray);
+        recarga(baseDeDatos);
+
+        hola.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Usuario a = (Usuario) parent.getItemAtPosition(position);
+                baseDeDatos.borraUsuario(a);
+                recarga(baseDeDatos);
+            }
+        });
 
     }
 }
