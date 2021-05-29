@@ -34,6 +34,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         Intent intent = getIntent();
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
 
+        Toast.makeText(getApplicationContext(), emailUsuario, Toast.LENGTH_SHORT).show();
         DatabaseHelper baseDeDatos = new DatabaseHelper(PerfilUsuarioActivity.this);
 
         Cursor datosUsuario = baseDeDatos.getDatosUsuario(emailUsuario);

@@ -74,7 +74,7 @@ public class RegistrarseActivity extends AppCompatActivity {
     }
 
     private void lanzaActivity(Intent intent, String emailUsuario){
-        intent.putExtra("Usuario_Email", emailUsuario);
+        intent.putExtra("USUARIO_EMAIL", emailUsuario);
         startActivity(intent);
     }
 }
