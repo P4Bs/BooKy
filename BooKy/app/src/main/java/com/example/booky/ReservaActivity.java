@@ -3,12 +3,9 @@ package com.example.booky;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
 
 public class ReservaActivity extends AppCompatActivity {
 
@@ -21,11 +18,11 @@ public class ReservaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserva);
 
-        num_ocupantes = findViewById(R.id.nombre2);
-        num_mesa = findViewById(R.id.nombre3);
-        turno1 = findViewById(R.id.rbPublico);
-        turno2 = findViewById(R.id.rbPrivado);
-        añadir = findViewById(R.id.button5);
+        num_ocupantes = findViewById(R.id.numeroComensales);
+        num_mesa = findViewById(R.id.numeroMesa);
+        turno1 = findViewById(R.id.turnoNoche);
+        turno2 = findViewById(R.id.turnoMañana);
+        añadir = findViewById(R.id.botonReserva);
 
        /* añadir.setOnClickListener(new View.OnClickListener() {
             @Override

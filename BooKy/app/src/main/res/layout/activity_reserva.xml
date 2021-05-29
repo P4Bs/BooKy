@@ -8,7 +8,7 @@
     tools:context=".ReservaActivity">
 
     <EditText
-        android:id="@+id/nombre2"
+        android:id="@+id/numeroComensales"
         android:layout_width="146dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/nombre7"
+        android:id="@+id/diaMes"
         android:layout_width="146dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/nombre3"
+        android:id="@+id/numeroMesa"
         android:layout_width="150dp"
         android:layout_height="47dp"
         android:layout_marginStart="24dp"
@@ -56,10 +56,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre2" />
+        app:layout_constraintTop_toBottomOf="@+id/numeroComensales" />
 
     <EditText
-        android:id="@+id/nombre6"
+        android:id="@+id/numeroMes"
         android:layout_width="150dp"
         android:layout_height="47dp"
         android:layout_marginStart="24dp"
@@ -73,10 +73,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre7" />
+        app:layout_constraintTop_toBottomOf="@+id/diaMes" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/vistaReservaYa"
         android:layout_width="383dp"
         android:layout_height="86dp"
         android:layout_marginTop="16dp"
@@ -93,29 +93,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/numeroOcupantes"
+        android:layout_width="396dp"
+        android:layout_height="507dp"
         android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sin_nombre"
-        tools:layout_editor_absoluteX="0dp" />
+        app:srcCompat="@drawable/sin_nombre" />
 
 
     <RadioGroup
         android:id="@+id/radioGroupTipoLugar"
         android:layout_width="389dp"
         android:layout_height="36dp"
-        android:checkedButton="@id/rbPublico"
+        android:checkedButton="@id/turnoNoche"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre3"
+        app:layout_constraintTop_toBottomOf="@+id/numeroMesa"
         app:layout_constraintVertical_bias="0.185">
 
         <RadioButton
-            android:id="@+id/rbPublico"
+            android:id="@+id/turnoNoche"
             android:layout_width="183dp"
             android:layout_height="45dp"
             android:layout_weight="1"
@@ -124,7 +125,7 @@
             tools:layout_editor_absoluteY="616dp" />
 
         <RadioButton
-            android:id="@+id/rbPrivado"
+            android:id="@+id/turnoMañana"
             android:layout_width="184dp"
             android:layout_height="45dp"
             android:layout_weight="1"
@@ -133,7 +134,7 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/botonReserva"
         android:layout_width="294dp"
         android:layout_height="50dp"
         android:background="#098BFF"
