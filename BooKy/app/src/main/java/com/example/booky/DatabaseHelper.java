@@ -259,6 +259,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         TODO: BUSCAR USUARIOS
      */
 
+    public Cursor getDatosUsuario(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + email + "'";
+        Cursor cursor = db.rawQuery(queryString, null);
+        return cursor;
+    }
+
     public boolean estaElUsuario(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + email + "'";
@@ -274,7 +281,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public String esAdmin(String email, String contraseña){
-        Cursor cursor = devuelveElUsuario(email, contraseña);
+        Cursor cursor = devuelveSiAdmin(email, contraseña);
 
         if(cursor.moveToFirst()){
             return cursor.getString(0);
@@ -283,7 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    private Cursor devuelveElUsuario(String email, String contraseña){
+    private Cursor devuelveSiAdmin(String email, String contraseña){
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT " + USUARIO_ADMIN + " FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + email + "' AND " + CONTRASENYA + " = '" + contraseña + "'";
         Cursor cursor = db.rawQuery(queryString, null);

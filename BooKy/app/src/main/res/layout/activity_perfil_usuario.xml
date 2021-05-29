@@ -8,13 +8,30 @@
     tools:context=".PerfilUsuarioActivity">
 
 
+    <TextView
+        android:id="@+id/IDUsuario"
+        android:layout_width="256dp"
+        android:layout_height="61dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="ID"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        tools:layout_editor_absoluteY="118dp"
+        tools:ignore="MissingConstraints" />
+
     <EditText
-        android:id="@+id/nombre5"
+        android:id="@+id/contraseñaUsuario"
         android:layout_width="204dp"
         android:layout_height="57dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
-        android:hint="34ds436s"
+        android:hint="Nueva Contraseña"
         android:inputType="text"
         android:selectAllOnFocus="true"
         android:textColor="#FFFFFF"
@@ -23,10 +40,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/nombre7" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuariardo"
+        android:layout_marginRight="24dp" />
 
     <EditText
-        android:id="@+id/nombre8"
+        android:id="@+id/emailUsuario"
         android:layout_width="254dp"
         android:layout_height="58dp"
         android:layout_marginTop="8dp"
@@ -40,10 +58,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/nombre9" />
+        app:layout_constraintTop_toBottomOf="@+id/telfUsuario"
+        android:layout_marginRight="24dp" />
 
     <EditText
-        android:id="@+id/nombre9"
+        android:id="@+id/telfUsuario"
         android:layout_width="202dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -57,14 +76,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/nombre5" />
+        app:layout_constraintTop_toBottomOf="@+id/contraseñaUsuario"
+        android:layout_marginRight="24dp" />
 
     <EditText
-        android:id="@+id/nombre7"
+        android:id="@+id/nombreUsuariardo"
         android:layout_width="248dp"
         android:layout_height="59dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:hint="Pablo Moreno"
         android:inputType="text"
         android:selectAllOnFocus="true"
@@ -74,24 +94,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/nombre6" />
-
-    <EditText
-        android:id="@+id/nombre6"
-        android:layout_width="272dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:hint="45343"
-        android:inputType="text"
-        android:selectAllOnFocus="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        tools:layout_editor_absoluteY="189dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView10"
@@ -198,8 +202,22 @@
     <ListView
         android:layout_width="351dp"
         android:layout_height="236dp"
+        android:layout_marginTop="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/actualizarCambios"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/actualizarCambios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#098BFF"
+        android:text="Actualizar Cambios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailUsuario" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
