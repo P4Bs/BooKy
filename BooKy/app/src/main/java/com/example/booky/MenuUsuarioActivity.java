@@ -24,8 +24,6 @@ public class MenuUsuarioActivity extends AppCompatActivity {
         botonReserva = findViewById(R.id.accionesAdmin);
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
 
-        Toast.makeText(getApplicationContext(), emailUsuario, Toast.LENGTH_SHORT).show();
-
         botonReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -18,7 +18,7 @@ import java.util.List;
 public class PlatoAdminActivity extends AppCompatActivity {
 
     String nombrePlato, descripcionPlato, alergenosPlato;
-    int precioPlato, IDplato;
+    int precioPlato, IDPlato;
     TextView cuadroNombrePlato, cuadroDescripcionPlato, cuadroAlergenosPlato, cuadroPrecio;
     ListView lv_comentarios;
     Button borraPlato;
@@ -38,11 +38,12 @@ public class PlatoAdminActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        nombrePlato = intent.getStringExtra("NOMBRE_PLATO");
-        Cursor plato = baseDeDatos.getPlato(nombrePlato);
+        nombrePlato = intent.getStringExtra("ID_PLATO");
+        Cursor plato = baseDeDatos.getPlato(IDPlato);
 
         if(plato.moveToFirst()){
-            IDplato = plato.getInt(0);
+            IDPlato = plato.getInt(0);
+            nombrePlato = plato.getString(1);
             descripcionPlato = plato.getString(2);
             alergenosPlato = plato.getString(3);
             precioPlato = plato.getInt(4);
@@ -53,7 +54,7 @@ public class PlatoAdminActivity extends AppCompatActivity {
             cuadroAlergenosPlato.setText("Alergenos: " + alergenosPlato);
             cuadroPrecio.setText("Precio: " + precioFormateado + "€");
 
-            List<Calificacion> calficacionesPlato = baseDeDatos.getListaComentarios(IDplato);
+            List<Calificacion> calficacionesPlato = baseDeDatos.getListaComentarios(IDPlato);
 
             ArrayAdapter calificacionesArray = new ArrayAdapter<Calificacion>(PlatoAdminActivity.this, android.R.layout.simple_list_item_1, calficacionesPlato);
             lv_comentarios.setAdapter(calificacionesArray);
@@ -71,7 +72,7 @@ public class PlatoAdminActivity extends AppCompatActivity {
         borraPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                baseDeDatos.borrarPlato(IDplato);
+                baseDeDatos.borrarPlato(IDPlato);
                 Toast.makeText(getApplicationContext(), "Plato Eliminado", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -79,7 +80,7 @@ public class PlatoAdminActivity extends AppCompatActivity {
     }
 
     public void launchCalificacionActivity(int IDCalif) {
-        Intent intent = new Intent(this, CalificacionActivity.class);
+        Intent intent = new Intent(this, ComentarioVerActivity.class);
         intent.putExtra("ID_CALIFICACION", IDCalif);
         startActivity(intent);
     }

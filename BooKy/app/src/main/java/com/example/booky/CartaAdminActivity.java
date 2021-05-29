@@ -18,6 +18,7 @@ public class CartaAdminActivity extends AppCompatActivity {
     ListView lv_platoslist;
     Button boton_añadir;
     String plato;
+    int IDPlato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,8 @@ public class CartaAdminActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Plato a = (Plato) parent.getItemAtPosition(position);
-                plato = a.getNombre();
+                IDPlato = a.getID();
                 launchPlatoAdminActivity(plato);
-
             }
         });
 
@@ -63,7 +63,7 @@ public class CartaAdminActivity extends AppCompatActivity {
     }
 
     private void lanzaActividad(Intent intent){
-        intent.putExtra("NOMBRE_PLATO", plato);
+        intent.putExtra("ID_PLATO", plato);
         startActivity(intent);
     }
 

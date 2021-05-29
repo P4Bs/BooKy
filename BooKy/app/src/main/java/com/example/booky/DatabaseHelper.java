@@ -288,9 +288,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor getPlato(String nombre){ //OBTIENE UN PLATO DE LA BASE DE DATOS SEGUN SU NOMBRE
+    public Cursor getPlato(int IDPlato){ //OBTIENE UN PLATO DE LA BASE DE DATOS SEGUN SU NOMBRE
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + NOMBRE + " = '" + nombre + "'";
+        String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + ID + " = '" + IDPlato + "'";
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor;
     }

@@ -17,7 +17,7 @@ import java.util.List;
 public class PlatoUsuarioActivity extends AppCompatActivity {
 
     String nombrePlato, descripcionPlato, alergenosPlato, emailUsuario;
-    int precioPlato, IDplato;
+    int precioPlato, IDPlato;
     TextView cuadroNombrePlato, cuadroDescripcionPlato, cuadroAlergenosPlato, cuadroPrecio;
     ListView lv_comentarios;
     Button añadeComentario;
@@ -36,13 +36,14 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
         añadeComentario = findViewById(R.id.añadeComentario);
 
         Intent intent = getIntent();
-        nombrePlato = intent.getStringExtra("ID_PLATO");
+        IDPlato = intent.getIntExtra("ID_PLATO", 0);
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
 
-        Cursor plato = baseDeDatos.getPlato(nombrePlato);
+        Cursor plato = baseDeDatos.getPlato(IDPlato);
 
         if(plato.moveToFirst()){
-            IDplato = plato.getInt(0);
+            IDPlato = plato.getInt(0);
+            nombrePlato = plato.getString(1);
             descripcionPlato = plato.getString(2);
             alergenosPlato = plato.getString(3);
             precioPlato = plato.getInt(4);
@@ -53,7 +54,7 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
             cuadroAlergenosPlato.setText("Alergenos: " + alergenosPlato);
             cuadroPrecio.setText("Precio: " + precioFormateado+ "€");
 
-            List<Calificacion> calficacionesPlato = baseDeDatos.getListaComentarios(IDplato);
+            List<Calificacion> calficacionesPlato = baseDeDatos.getListaComentarios(IDPlato);
 
             ArrayAdapter calificacionesArray = new ArrayAdapter<Calificacion>(PlatoUsuarioActivity.this, android.R.layout.simple_list_item_1, calficacionesPlato);
             lv_comentarios.setAdapter(calificacionesArray);
@@ -77,14 +78,14 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
     }
 
     public void launchCreaCalificacionActivity(){
-        Intent intent = new Intent(this, CrearCalificacionActivity.class);
-        intent.putExtra("ID_PLATO", IDplato);
+        Intent intent = new Intent(this, ComentarioActivity.class);
+        intent.putExtra("ID_PLATO", IDPlato);
         intent.putExtra("USUARIO_EMAIL", emailUsuario);
         iniciaActividad(intent);
     }
 
     public void launchCalificacionActivity(int IDCalif) {
-        Intent intent = new Intent(this, CalificacionActivity.class);
+        Intent intent = new Intent(this, ComentarioVerActivity.class);
         intent.putExtra("ID_CALIFICACION", IDCalif);
         iniciaActividad(intent);
     }
