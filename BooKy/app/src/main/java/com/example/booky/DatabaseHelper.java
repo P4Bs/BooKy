@@ -40,6 +40,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String NOTA = "NOTA";
     private static final String COMENTARIO = "COMENTARIO";
 
+    private Plato platoPrueba;
+
     public DatabaseHelper(@Nullable Context context) {
         super(context, "BooKy.db", null, 1);
     }
@@ -56,6 +58,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(crearTablaCarta);
         db.execSQL(crearTablaReserva);
         db.execSQL(crearTablaCalificacion);
+
+        platoPrueba = new Plato(-1, "Pizza pepperoni", "Es una pizza pepperoni, que esperabas loko?", "", 780);
+        anyadePlato(platoPrueba);
     }
 
     @Override

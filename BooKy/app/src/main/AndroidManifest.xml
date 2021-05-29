@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".PerfilAdminActivity"></activity>
+        <activity android:name=".CartaUsuarioActivity"></activity>
+        <activity android:name=".CartaAdminActivity" />
+        <activity android:name=".PerfilAdminActivity" />
         <activity android:name=".PerfilUsuarioActivity" />
-        <activity android:name=".CartaActivity" />
         <activity android:name=".AdministracionAdminActivity" />
         <activity android:name=".ComentarioActivity" />
         <activity android:name=".PlatoUsuarioActivity" />

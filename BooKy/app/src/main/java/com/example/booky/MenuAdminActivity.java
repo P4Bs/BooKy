@@ -48,27 +48,21 @@ public class MenuAdminActivity extends AppCompatActivity {
 
     private void launchPerfilAdmin(String emailAdmin) {
         Intent intent = new Intent(this, PerfilAdminActivity.class);
-        lanzaPerfilAdmin_Acciones(intent, emailAdmin);
+        lanzaActividad(intent, emailAdmin);
     }
 
     private void launchAccionesAdmin(String emailAdmin) {
         Intent intent = new Intent(this, AdministracionAdminActivity.class);
-        lanzaPerfilAdmin_Acciones(intent, emailAdmin);
+        lanzaActividad(intent, emailAdmin);
     }
 
     private void launchCartaAdmin(String emailAdmin, Boolean esAdmin) {
-        Intent intent = new Intent(this, CartaActivity.class);
-        lanzaCarta(intent, emailAdmin);
+        Intent intent = new Intent(this, CartaAdminActivity.class);
+        lanzaActividad(intent, emailAdmin);
     }
 
-    private void lanzaPerfilAdmin_Acciones(Intent intent, String emailAdmin){
+    private void lanzaActividad(Intent intent, String emailAdmin){
         intent.putExtra("EMAIL_USUARIO", emailAdmin);
-        startActivity(intent);
-    }
-
-    private void lanzaCarta(Intent intent, String emailAdmin) {
-        intent.putExtra("EMAIL_USUARIO", emailAdmin);
-        intent.putExtra("ES_ADMIN", true);
         startActivity(intent);
     }
 }

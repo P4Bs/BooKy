@@ -47,27 +47,21 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
     public void launchReservaActivity(String emailUsuario){
         Intent intent = new Intent(this, ReservaActivity.class);
-        iniciarReserva_Perfil(intent);
+        lanzaActividad(intent);
     }
 
     public void launchPerfilUsuarioActivity(String emailUsuario){
         Intent intent = new Intent(this, PerfilUsuarioActivity.class);
-        iniciarReserva_Perfil(intent);
+        lanzaActividad(intent);
     }
 
     public void launchCartaActivity(String emailUsuario){
-        Intent intent = new Intent(this, CartaActivity.class);
-        iniciarCarta(intent);
+        Intent intent = new Intent(this, CartaUsuarioActivity.class);
+        lanzaActividad(intent);
     }
 
-    private void iniciarReserva_Perfil(Intent intent){
+    private void lanzaActividad(Intent intent){
         intent.putExtra("USUARIO_CORREO", emailUsuario);
-        startActivity(intent);
-    }
-
-    private void iniciarCarta(Intent intent){
-        intent.putExtra("USUARIO_CORREO", emailUsuario);
-        intent.putExtra("ES_ADMIN", false);
         startActivity(intent);
     }
 }
