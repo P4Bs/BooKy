@@ -27,7 +27,7 @@ public class MenuAdminActivity extends AppCompatActivity {
         botonPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchPerfilAdmin(emailAdmin);
+                launchPerfilUsuario(emailAdmin);
             }
         });
 
@@ -46,8 +46,8 @@ public class MenuAdminActivity extends AppCompatActivity {
         });
     }
 
-    private void launchPerfilAdmin(String emailAdmin) {
-        Intent intent = new Intent(this, PerfilAdminActivity.class);
+    private void launchPerfilUsuario(String emailAdmin) {
+        Intent intent = new Intent(this, PerfilUsuarioActivity.class);
         lanzaActividad(intent, emailAdmin);
     }
 

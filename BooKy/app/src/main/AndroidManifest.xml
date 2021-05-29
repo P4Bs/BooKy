@@ -13,7 +13,6 @@
         <activity android:name=".ComentarioVerActivity" />
         <activity android:name=".CartaUsuarioActivity" />
         <activity android:name=".CartaAdminActivity" />
-        <activity android:name=".PerfilAdminActivity" />
         <activity android:name=".PerfilUsuarioActivity" />
         <activity android:name=".AdministracionAdminActivity" />
         <activity android:name=".ComentarioActivity" />
