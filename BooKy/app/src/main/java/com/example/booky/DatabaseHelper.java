@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.sql.SQLInput;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -40,8 +42,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String NOTA = "NOTA";
     private static final String COMENTARIO = "COMENTARIO";
 
-    private Plato platoPrueba;
-
     public DatabaseHelper(@Nullable Context context) {
         super(context, "BooKy.db", null, 1);
     }
@@ -59,8 +59,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(crearTablaReserva);
         db.execSQL(crearTablaCalificacion);
 
-        platoPrueba = new Plato(-1, "Pizza pepperoni", "Es una pizza pepperoni, que esperabas loko?", "", 780);
-        anyadePlato(platoPrueba);
     }
 
     @Override
@@ -284,4 +282,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    //MOSTRAR LOS PLATOS EN LISTA
+    public List<Plato> get_lista_platos(){
+
+        List<Plato> returnlist = new ArrayList<>();
+
+        String querystring = "SELECT * FROM " + CARTA_TABLA;
+
+        SQLiteDatabase db  = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(querystring,null);
+
+        if(cursor.moveToFirst()){
+            do{
+                int ID = cursor.getInt(0);
+                String Nombre = cursor.getString(1);
+                String Descripcion = cursor.getString(2);
+                String AlergenosConcatenados = cursor.getString(3);
+                int Precio = cursor.getInt(4);
+
+                Plato platoactual = new Plato(ID,Nombre,Descripcion,AlergenosConcatenados,Precio);
+                returnlist.add(platoactual);
+
+
+            }while(cursor.moveToNext());
+        }else{
+
+        }
+        cursor.close();
+        db.close();
+        return returnlist;
+
+    }
+
+
 }

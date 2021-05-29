@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="@+id/menu"
         app:layout_constraintTop_toTopOf="@+id/menu"
         app:layout_constraintVertical_bias="0.488"
-        app:srcCompat="@drawable/menuIcon" />
+        app:srcCompat="@drawable/menu_con" />
 
     <ImageButton
         android:id="@+id/perfilAdmin"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toStartOf="@+id/perfilAdmin"
         app:layout_constraintStart_toStartOf="@+id/accionesAdmin"
         app:layout_constraintTop_toTopOf="@+id/accionesAdmin"
-        app:srcCompat="@drawable/reservaIcon" />
+        app:srcCompat="@drawable/reserva_con" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -91,6 +91,6 @@
         app:layout_constraintStart_toStartOf="@+id/perfilAdmin"
         app:layout_constraintTop_toTopOf="@+id/perfilAdmin"
         app:layout_constraintVertical_bias="0.555"
-        app:srcCompat="@drawable/usuarioIcon" />
+        app:srcCompat="@drawable/usuario_con" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
