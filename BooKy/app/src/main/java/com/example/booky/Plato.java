@@ -12,10 +12,10 @@ public class Plato {
     private int ID;
     private String Nombre;
     private String Descripcion;
-    private int Precio;
+    private String Precio;
     private String Alergenos;
 
-    public Plato(int ID, String nombre, String descripcion, String alergenos, int precio){
+    public Plato(int ID, String nombre, String descripcion, String alergenos, String precio){
         this.setID(ID);
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
@@ -53,18 +53,21 @@ public class Plato {
         Alergenos = alergenos;
     }
 
-    public int getPrecio() {
-        return Precio;
+    public String getPrecio() {
+        return this.Precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(String precio) {
         Precio = precio;
     }
     
     @Override
     public String toString() {
-        String a = ""; 
-        a += "Nombre: " + Nombre + " .Descripcion: " + Descripcion + " .Alergenos: " + Alergenos + " .Precio: " + Precio + "€.";
+        String a = "";
+        a += "-Nombre: " + this.Nombre + "\n";
+        a += "-Descripcion: " + this.Descripcion + "\n";
+        a += "-Alergenos: " + this.Alergenos + "\n";
+        a += "-Precio: " + this.Precio + " €";
         return a;
     }
 

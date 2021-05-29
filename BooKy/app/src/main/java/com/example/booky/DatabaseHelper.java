@@ -54,9 +54,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String crearTablaUsuario = "CREATE TABLE " + USUARIO_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT, CONTRASEÑA TEXT, NUM_TELEFONO TEXT, EMAIL TEXT, ES_ADMINISTRADOR BOOL);"; //FALTA IMAGEN
-        String crearTablaCarta = "CREATE TABLE " + CARTA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT UNIQUE, DESCRIPCION TEXT, ALERGENOS TEXT, PRECIO INTEGER);";
+        String crearTablaCarta = "CREATE TABLE " + CARTA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT UNIQUE, DESCRIPCION TEXT, ALERGENOS TEXT, PRECIO TEXT);";
         String crearTablaReserva = "CREATE TABLE " + RESERVA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, MESA TEXT, DIA INT, MES INT, OCUPANTES INT, INTERVALO_TIEMPO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID));";
-        String crearTablaCalificacion = "CREATE TABLE " + CALIFICACION_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, PLATO INTEGER, NOTA INTEGER, COMENTARIO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID), FOREIGN KEY(PLATO) REFERENCES CARTA(ID));";
+        String crearTablaCalificacion = "CREATE TABLE " + CALIFICACION_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, PLATO INTEGER, NOTA TEXT, COMENTARIO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID), FOREIGN KEY(PLATO) REFERENCES CARTA(ID));";
 
         db.execSQL(crearTablaUsuario);
         db.execSQL(crearTablaCarta);
@@ -114,12 +114,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
-    public boolean anyadeCalificacion(Calificacion calificacion, Usuario usuario, Plato plato){
+    public boolean anyadeCalificacion(Calificacion calificacion){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(USUARIO, usuario.getID());
-        cv.put(ID_PLATO, plato.getID());
+        cv.put(USUARIO, calificacion.getIDUsuario());
+        cv.put(ID_PLATO, calificacion.getIDPlato());
         cv.put(NOTA, calificacion.getNota());
         cv.put(COMENTARIO, calificacion.getComentario());
 
@@ -312,9 +312,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String Nombre = cursor.getString(1);
                 String Descripcion = cursor.getString(2);
                 String AlergenosConcatenados = cursor.getString(3);
-                int Precio = cursor.getInt(4);
+                String Precio = cursor.getString(4);
 
-                Plato platoactual = new Plato(ID,Nombre,Descripcion,AlergenosConcatenados,Precio);
+                Plato platoactual = new Plato(ID,Nombre,Descripcion,AlergenosConcatenados, Precio);
                 returnlist.add(platoactual);
 
 
@@ -361,7 +361,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Calificacion> getListaComentarios(int IDPlato){
         List<Calificacion> calificaciones = new ArrayList<>();
-        String queryString = "SELECT * FROM " + CALIFICACION_TABLA + " WHERE " + ID + " = " + IDPlato;
+        String queryString = "SELECT * FROM " + CALIFICACION_TABLA + " WHERE " + ID_PLATO + " = " + IDPlato;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(queryString, null);
@@ -371,12 +371,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int ID = cursor.getInt(0);
                 int usuarioID = cursor.getInt(1);
                 int platoID = cursor.getInt(2);
-                int notaPlato = cursor.getInt(3);
+                String notaPlato = cursor.getString(3);
                 String comentarioPlato = cursor.getString(4);
 
                 Calificacion nuevoComentario = new Calificacion(ID, usuarioID, platoID, notaPlato, comentarioPlato);
                 calificaciones.add(nuevoComentario);
-            } while(cursor.moveToFirst());
+            } while(cursor.moveToNext());
         } else{
 
         }

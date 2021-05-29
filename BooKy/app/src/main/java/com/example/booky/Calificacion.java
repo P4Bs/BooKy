@@ -4,10 +4,10 @@ public class Calificacion {
     private int ID;
     private int IDUsuario;
     private int IDPlato;
-    private int Nota;
+    private String Nota;
     private String Comentario;
 
-    public Calificacion(int ID, int IDUsuario, int IDPlato, int Nota, String comentario){
+    public Calificacion(int ID, int IDUsuario, int IDPlato, String Nota, String comentario){
         this.ID = ID;
         this.IDUsuario = IDUsuario;
         this.IDPlato = IDPlato;
@@ -23,11 +23,11 @@ public class Calificacion {
         this.ID = ID;
     }
 
-    public int getNota() {
+    public String getNota() {
         return Nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(String nota) {
         Nota = nota;
     }
 
@@ -53,5 +53,14 @@ public class Calificacion {
 
     public void setIDUsuario(int IDUsuario){
         this.IDUsuario = IDUsuario;
+    }
+
+    @Override
+    public String toString() {
+        String a = "";
+        a += "-IDUsuario: " + this.IDUsuario + "\n";
+        a += "-Calificacion: " + this.Nota + "/10\n";
+        a += "-Comentario: " + this.Comentario + "\n";
+        return a;
     }
 }

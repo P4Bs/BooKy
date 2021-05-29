@@ -47,16 +47,15 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
             descripcionPlato = plato.getString(2);
             alergenosPlato = plato.getString(3);
             precioPlato = plato.getInt(4);
-            String precioFormateado = formateaElPrecio(precioPlato);
 
             cuadroNombrePlato.setText(nombrePlato);
             cuadroDescripcionPlato.setText("Descripcion:  " + descripcionPlato);
             cuadroAlergenosPlato.setText("Alergenos: " + alergenosPlato);
-            cuadroPrecio.setText("Precio: " + precioFormateado+ "€");
+            cuadroPrecio.setText("Precio: " + precioPlato + "€");
 
             List<Calificacion> calficacionesPlato = baseDeDatos.getListaComentarios(IDPlato);
 
-            ArrayAdapter calificacionesArray = new ArrayAdapter<Calificacion>(PlatoUsuarioActivity.this, android.R.layout.simple_list_item_1, calficacionesPlato);
+            ArrayAdapter calificacionesArray = new ArrayAdapter<>(PlatoUsuarioActivity.this, android.R.layout.simple_list_item_1, calficacionesPlato);
             lv_comentarios.setAdapter(calificacionesArray);
         }
 
@@ -94,11 +93,4 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private String formateaElPrecio(int precio){
-        String precioOriginal = Integer.toString(precio);
-        String precioFinal = precioOriginal.substring(0, precioOriginal.length() - 2);
-        precioFinal += ",";
-        precioFinal += precioOriginal.substring(precioOriginal.length()-2, precioOriginal.length());
-        return precioFinal;
-    }
 }

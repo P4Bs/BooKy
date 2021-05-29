@@ -38,13 +38,13 @@ public class ayadirplatoActivity extends AppCompatActivity {
                     alergenosPlato = alergenos.getText().toString();
                     precioPlato = precio.getText().toString();
 
-                    if(precioPlato.contains(",")){
-                        Toast.makeText(getApplicationContext(), "El precio debe ir sin comas o puntos", Toast.LENGTH_SHORT).show();
+                    if(precioPlato.contains(".")){
+                        Toast.makeText(getApplicationContext(), "El precio debe expresarse con coma", Toast.LENGTH_SHORT).show();
                     } else if(!precioPlato.equals("")){
                         if (databaseHelper.estaELplato(nombrePlato)) {
                             Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
                         } else {
-                            Plato nuevoPlato = new Plato(-1, nombrePlato, descripcionPlato, alergenosPlato, Integer.parseInt(precioPlato));
+                            Plato nuevoPlato = new Plato(-1, nombrePlato, descripcionPlato, alergenosPlato, precioPlato);
                             databaseHelper.anyadePlato(nuevoPlato);
                             Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
                             finish(); //CIERRA LA ACTIVIDAD PORQUE EL PLATO FUE AÑADIDO EXITOSAMENTE
@@ -53,23 +53,6 @@ public class ayadirplatoActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-    }
-
-    public String formateaPrecio(String precio){
-        String[] precioComas = precio.split(",");
-        String[] precioPunto = precio.split(".");
-        String precioFormateado;
-
-        if(precioComas.length > 2 || precioPunto.length> 1){
-            precioFormateado = null;
-            Toast.makeText(this, "El precio debe ser introducido con coma", Toast.LENGTH_SHORT).show();;
-
-        } else{
-            precioFormateado = precioComas[0] + precioComas[1];
-        }
-        return precioFormateado;
     }
 
 }
