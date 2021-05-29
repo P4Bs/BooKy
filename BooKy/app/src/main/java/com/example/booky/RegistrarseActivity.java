@@ -1,5 +1,6 @@
 package com.example.booky;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,10 +51,18 @@ public class RegistrarseActivity extends AppCompatActivity {
 
                         databaseHelper.anyadeUsuario(nuevoUsuario);
                         Toast.makeText(getApplicationContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
-                        // TODO: VISTAS DE PANTALLA DE USUARIO
+
+                        launchMenuUsuarioActivity(emailUsuario);
+
                     }
                 }
             }
         });
+    }
+
+    public void launchMenuUsuarioActivity(String emailUsuario){
+        Intent intent = new Intent(this, MenuUsuarioActivity.class);
+        intent.putExtra("Usuario_Email", emailUsuario);
+        startActivity(intent);
     }
 }

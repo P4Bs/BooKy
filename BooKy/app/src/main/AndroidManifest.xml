@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MenuUsuarioActivity"></activity>
+        <activity android:name=".PerfilAdminActivity"></activity>
+        <activity android:name=".PerfilUsuarioActivity" />
+        <activity android:name=".CartaActivity" />
+        <activity android:name=".AdministracionAdminActivity" />
+        <activity android:name=".ComentarioActivity" />
+        <activity android:name=".PlatoUsuarioActivity" />
+        <activity android:name=".PlatoAdminActivity" />
+        <activity android:name=".MenuAdminActivity" />
+        <activity android:name=".ReservaActivity" />
+        <activity android:name=".MenuUsuarioActivity" />
         <activity android:name=".RegistrarseActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />

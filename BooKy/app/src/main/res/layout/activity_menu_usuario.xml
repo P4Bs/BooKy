@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/menu"
         android:layout_width="164dp"
         android:layout_height="166dp"
         android:layout_marginTop="52dp"
@@ -39,16 +39,16 @@
         android:id="@+id/imageView"
         android:layout_width="85dp"
         android:layout_height="82dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton7"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton7"
+        app:layout_constraintBottom_toBottomOf="@+id/menu"
+        app:layout_constraintEnd_toEndOf="@+id/menu"
         app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@+id/imageButton7"
-        app:layout_constraintTop_toTopOf="@+id/imageButton7"
+        app:layout_constraintStart_toStartOf="@+id/menu"
+        app:layout_constraintTop_toTopOf="@+id/menu"
         app:layout_constraintVertical_bias="0.488"
         app:srcCompat="@drawable/lkadjfsa_dsjn_l" />
 
     <ImageButton
-        android:id="@+id/imageButton9"
+        android:id="@+id/perfilUsuario"
         android:layout_width="164dp"
         android:layout_height="166dp"
         android:layout_marginEnd="36dp"
@@ -56,40 +56,40 @@
         android:background="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageButton8"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton7"
+        app:layout_constraintStart_toEndOf="@+id/reservas"
+        app:layout_constraintTop_toBottomOf="@+id/menu"
         app:srcCompat="@drawable/sin_nombre_2_pero_en_minuscula_todo" />
 
     <ImageButton
-        android:id="@+id/imageButton8"
+        android:id="@+id/reservas"
         android:layout_width="164dp"
         android:layout_height="166dp"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
         android:background="#00FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton7"
+        app:layout_constraintTop_toBottomOf="@+id/menu"
         app:srcCompat="@drawable/sin_nombre_2_pero_en_minuscula_todo" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="79dp"
         android:layout_height="86dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton8"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton9"
-        app:layout_constraintStart_toStartOf="@+id/imageButton8"
-        app:layout_constraintTop_toTopOf="@+id/imageButton8"
+        app:layout_constraintBottom_toBottomOf="@+id/reservas"
+        app:layout_constraintEnd_toStartOf="@+id/perfilUsuario"
+        app:layout_constraintStart_toStartOf="@+id/reservas"
+        app:layout_constraintTop_toTopOf="@+id/reservas"
         app:srcCompat="@drawable/sin_nombre_2_pero_en_minuscula_todo_2" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="77dp"
         android:layout_height="76dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton9"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton9"
+        app:layout_constraintBottom_toBottomOf="@+id/perfilUsuario"
+        app:layout_constraintEnd_toEndOf="@+id/perfilUsuario"
         app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="@+id/imageButton9"
-        app:layout_constraintTop_toTopOf="@+id/imageButton9"
+        app:layout_constraintStart_toStartOf="@+id/perfilUsuario"
+        app:layout_constraintTop_toTopOf="@+id/perfilUsuario"
         app:layout_constraintVertical_bias="0.555"
         app:srcCompat="@drawable/sin_nombre_2_pero_en_minuscula_todo_22222222" />
 

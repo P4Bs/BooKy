@@ -9,16 +9,23 @@ public class Plato {
     private int ID;
     private String Nombre;
     private String Descripcion;
-    private Bitmap Imagen;
     private List<String> Alergenos;
     private int Precio;
+    private String AlergenosConcat;
 
-    public Plato(int ID, String nombre, Bitmap imagen, String descripcion, List<String> alergenos, int precio){
+    public Plato(int ID, String nombre, String descripcion, List<String> alergenos, int precio){
         this.setID(ID);
         this.setNombre(nombre);
-        this.setImagen(imagen);
         this.setDescripcion(descripcion);
         this.setAlergenos(alergenos);
+        this.setPrecio(precio);
+    }
+
+    public Plato(int ID, String nombre, String descripcion, String alergenos, int precio){
+        this.setID(ID);
+        this.setNombre(nombre);
+        this.setDescripcion(descripcion);
+        this.AlergenosConcat = alergenos;
         this.setPrecio(precio);
     }
 
@@ -46,20 +53,20 @@ public class Plato {
         Descripcion = descripcion;
     }
 
-    public byte[] getImagenAsByteArray() {
-        return getBitmapAsByteArray(this.Imagen);
-    }
-
-    public void setImagen(Bitmap imagen) {
-        Imagen = imagen;
-    }
-
     public String getAlergenos() {
         return uneAlergenos(Alergenos);
     }
 
     public void setAlergenos(List<String> alergenos) {
         Alergenos = alergenos;
+    }
+
+    public void setAlergenosConcat(String alergenosConcat){
+        this.AlergenosConcat = alergenosConcat;
+    }
+
+    public String getAlergenosConcat(){
+        return this.AlergenosConcat;
     }
 
     public int getPrecio() {

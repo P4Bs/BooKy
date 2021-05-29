@@ -53,7 +53,7 @@ public class LogInActivity extends AppCompatActivity {
                             //TODO: ABRIR VISTA ADMIN
                         } else{
                             //TODO : ABRIR VISA USURIOs
-                            launchMenuUsuarioActivity(emailUsuario);
+                            launchMenuUsuarioActivity(emailUsuario, false);
                         }
                     }
                 }
@@ -66,9 +66,10 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void launchMenuUsuarioActivity(String emailUsuario){
+    public void launchMenuUsuarioActivity(String emailUsuario, Boolean esAdmin){
         Intent intent = new Intent(this, MenuUsuarioActivity.class);
-        intent.putExtra("Usuario_Email", emailUsuario);
+        intent.putExtra("USUARIO_EMAIL", emailUsuario);
+        intent.putExtra("ES_ADMIN", esAdmin);
         startActivity(intent);
     }
 
