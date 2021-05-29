@@ -66,5 +66,4 @@ public class CartaAdminActivity extends AppCompatActivity {
         intent.putExtra("ID_PLATO", plato);
         startActivity(intent);
     }
-
 }
