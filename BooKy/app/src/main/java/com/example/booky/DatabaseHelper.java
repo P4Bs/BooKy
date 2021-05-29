@@ -324,5 +324,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<Usuario> get_lista_usuarios(){
+
+        List<Usuario> returnlist = new ArrayList<>();
+
+        String querystring = "SELECT * FROM " + USUARIO_TABLA;
+
+        SQLiteDatabase db  = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(querystring,null);
+
+        if(cursor.moveToFirst()){
+            do{
+                int ID = cursor.getInt(0);
+                String Nombre = cursor.getString(1);
+                String contraseña = cursor.getString(2);
+                String telefono = cursor.getString(3);
+                String email = cursor.getString(4);
+                boolean admin = cursor.getInt(5) > 0;
+
+                Usuario usuarioactual = new Usuario(ID,Nombre,contraseña,telefono,email,admin);
+                returnlist.add(usuarioactual);
+            }while(cursor.moveToNext());
+        }else{
+
+        }
+        cursor.close();
+        db.close();
+        return returnlist;
+
+    }
+
 
 }

@@ -24,6 +24,15 @@ public class Usuario {
         this.contrasenya = getSHA1(contrasenya);
     }
 
+    public Usuario(int ID, String nombre, String contrasenya,String NumTelefono,String correo,boolean esAdmin ){
+        this.ID = ID;
+        this.esAdmin = esAdmin;
+        this.nombre = nombre;
+        this.NumTelefono = NumTelefono;
+        this.correo= correo;
+        this.contrasenya = getSHA1(contrasenya);
+    }
+
     public int getID() {
         return ID;
     }
@@ -77,6 +86,14 @@ public class Usuario {
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
     }
+
+    @Override
+    public String toString(){
+        String a = "";
+        a += "Id: " + ID + " .Nombre: " +nombre + " .Contraseña: " + contrasenya  + " .NumTelefono: " + NumTelefono + " .Correo: " + correo + " .Admin: " +esAdmin + ".";
+        return a ;
+    }
+
 
     // TODO: ENCONTRAR UN FORMA DE QUITAR ESTO
     private static String getSHA1(String input){
