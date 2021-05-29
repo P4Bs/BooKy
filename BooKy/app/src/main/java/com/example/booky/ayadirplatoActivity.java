@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 public class ayadirplatoActivity extends AppCompatActivity {
@@ -33,26 +32,22 @@ public class ayadirplatoActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
                 } else{
                     DatabaseHelper databaseHelper = new DatabaseHelper(ayadirplatoActivity.this);
-                    String nombrePlato, descripcionPlato, alergenosPlato,precioPlato;
+                    String nombrePlato, descripcionPlato, alergenosPlato, precioPlato;
                     nombrePlato = nombre.getText().toString();
                     descripcionPlato = descripcion.getText().toString();
                     alergenosPlato = alergenos.getText().toString();
                     precioPlato = precio.getText().toString();
 
-                    if(Integer.parseInt(precioPlato) < 100){
-                        Toast.makeText(getApplicationContext(), "El precio ha de ser mayor de 1 Euro", Toast.LENGTH_SHORT).show();
-                    } else {
-                        precioPlato = formateaPrecio(precioPlato);
-
-                        if (precioPlato != null) {
-                            if (databaseHelper.estaELplato(nombrePlato)) {
-                                Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Plato nuevoPlato = new Plato(-1, nombrePlato, descripcionPlato, alergenosPlato, Integer.parseInt(precioPlato));
-                                databaseHelper.anyadePlato(nuevoPlato);
-                                Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
-                                finish(); //CIERRA LA ACTIVIDAD PORQUE EL PLATO FUE AÑADIDO EXITOSAMENTE
-                            }
+                    if(precioPlato.contains(",")){
+                        Toast.makeText(getApplicationContext(), "El precio debe ir sin comas o puntos", Toast.LENGTH_SHORT).show();
+                    } else if(!precioPlato.equals("")){
+                        if (databaseHelper.estaELplato(nombrePlato)) {
+                            Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Plato nuevoPlato = new Plato(-1, nombrePlato, descripcionPlato, alergenosPlato, Integer.parseInt(precioPlato));
+                            databaseHelper.anyadePlato(nuevoPlato);
+                            Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
+                            finish(); //CIERRA LA ACTIVIDAD PORQUE EL PLATO FUE AÑADIDO EXITOSAMENTE
                         }
                     }
                 }

@@ -25,6 +25,7 @@ public class CartaAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carta_admin);
 
         lv_platoslist = findViewById(R.id.lv_platoslist);
+        boton_añadir = findViewById(R.id.Añadir_plato);
 
         DatabaseHelper baseDeDatos = new DatabaseHelper(CartaAdminActivity.this);
         List<Plato> todos_platos = baseDeDatos.get_lista_platos();
@@ -39,10 +40,10 @@ public class CartaAdminActivity extends AppCompatActivity {
                 Plato a = (Plato) parent.getItemAtPosition(position);
                 plato = a.getNombre();
                 launchPlatoAdminActivity(plato);
+
             }
         });
 
-        boton_añadir = findViewById(R.id.Añadir_plato);
         boton_añadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

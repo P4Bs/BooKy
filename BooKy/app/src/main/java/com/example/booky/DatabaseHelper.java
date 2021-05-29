@@ -149,42 +149,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private boolean borraTodasLasReservas(SQLiteDatabase db, Usuario usuario){
         String queryString = "DELETE FROM " + RESERVA_TABLA + " WHERE " + USUARIO + " = " + usuario.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
     private boolean borraTodosLasCalificacionesDelUsuario(SQLiteDatabase db, Usuario usuario){
         String queryString = "DELETE FROM " + CALIFICACION_TABLA + " WHERE " + USUARIO + " = " + usuario.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
-    public boolean borrarCalificacion(Calificacion calificacion){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + CALIFICACION_TABLA + " WHERE " + ID + " = " + calificacion.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
-        return cursor.moveToFirst();
-    }
-
-    public boolean borrarPlato(Plato plato){
+    public boolean borrarPlato(int IDplato){
         //TODO: BORRAR TODAS LAS CALIFICACIONES ASOCIADAS AL PLATO
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + CARTA_TABLA + "WHERE " + ID + " = " + plato.getID();
-        borraTodasLasCalificacionesDelPlato(db, plato);
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+        String queryString = "DELETE FROM " + CARTA_TABLA + " WHERE " + ID + " = " +IDplato;
+        borraTodasLasCalificacionesDelPlato(db, IDplato);
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
-    private boolean borraTodasLasCalificacionesDelPlato(SQLiteDatabase db, Plato plato){
-        String queryString = "DELETE FROM " + CALIFICACION_TABLA + " WHERE " + ID_PLATO + " = " + plato.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+    private boolean borraTodasLasCalificacionesDelPlato(SQLiteDatabase db, int IDPlato){
+        String queryString = "DELETE FROM " + CALIFICACION_TABLA + " WHERE " + ID_PLATO + " = " + IDPlato;
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
     public boolean borrarReserva(Reserva reserva){
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DESLETE FROM " + RESERVA_TABLA + " WHERE " + ID + " = " + reserva.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+        String queryString = "DELETE FROM " + RESERVA_TABLA + " WHERE " + ID + " = " + reserva.getID();
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 

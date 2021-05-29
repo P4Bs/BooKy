@@ -14,13 +14,18 @@ import java.util.List;
 
 public class CartaUsuarioActivity extends AppCompatActivity {
 
-    String plato;
+    int IDPlato;
     ListView lv_platoslist;
+    String emailUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta_usuario);
         lv_platoslist = findViewById(R.id.lv_platoslist);
+
+        Intent intent = getIntent();
+        emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
 
         DatabaseHelper baseDeDatos = new DatabaseHelper(CartaUsuarioActivity.this);
         List<Plato> todos_platos = baseDeDatos.get_lista_platos();
@@ -33,19 +38,20 @@ public class CartaUsuarioActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Plato a = (Plato) parent.getItemAtPosition(position);
-                plato = a.getNombre();
-                launchPlatoUsuarioActivity(plato);
+                IDPlato = a.getID();
+                launchPlatoUsuarioActivity(IDPlato);
             }
         });
     }
 
-    public void launchPlatoUsuarioActivity(String plato){
+    public void launchPlatoUsuarioActivity(int plato){
         Intent intent = new Intent(this, PlatoUsuarioActivity.class);
+        intent.putExtra("USUARIO_EMAIL", emailUsuario);
+        intent.putExtra("ID_PLATO", plato);
         lanzaActividad(intent);
     }
 
     private void lanzaActividad(Intent intent){
-        intent.putExtra("NOMBRE_PLATO", plato);
         startActivity(intent);
     }
 

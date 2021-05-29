@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,10 +16,11 @@ import java.util.List;
 
 public class PlatoUsuarioActivity extends AppCompatActivity {
 
-    String nombrePlato, descripcionPlato, alergenosPlato;
+    String nombrePlato, descripcionPlato, alergenosPlato, emailUsuario;
     int precioPlato, IDplato;
     TextView cuadroNombrePlato, cuadroDescripcionPlato, cuadroAlergenosPlato, cuadroPrecio;
     ListView lv_comentarios;
+    Button añadeComentario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,12 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
         cuadroPrecio = findViewById(R.id.precioPlato);
         cuadroAlergenosPlato = findViewById(R.id.alergenosPlato);
         lv_comentarios = findViewById(R.id.listaComentarios);
+        añadeComentario = findViewById(R.id.añadeComentario);
 
         Intent intent = getIntent();
+        nombrePlato = intent.getStringExtra("ID_PLATO");
+        emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
 
-        nombrePlato = intent.getStringExtra("NOMBRE_PLATO");
         Cursor plato = baseDeDatos.getPlato(nombrePlato);
 
         if(plato.moveToFirst()){
@@ -47,7 +51,7 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
             cuadroNombrePlato.setText(nombrePlato);
             cuadroDescripcionPlato.setText("Descripcion:  " + descripcionPlato);
             cuadroAlergenosPlato.setText("Alergenos: " + alergenosPlato);
-            cuadroPrecio.setText("Precio: " + precioFormateado);
+            cuadroPrecio.setText("Precio: " + precioFormateado+ "€");
 
             List<Calificacion> calficacionesPlato = baseDeDatos.getListaComentarios(IDplato);
 
@@ -63,11 +67,29 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
                 launchCalificacionActivity(IDCalificacion);
             }
         });
+
+        añadeComentario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchCreaCalificacionActivity();
+            }
+        });
+    }
+
+    public void launchCreaCalificacionActivity(){
+        Intent intent = new Intent(this, CrearCalificacionActivity.class);
+        intent.putExtra("ID_PLATO", IDplato);
+        intent.putExtra("USUARIO_EMAIL", emailUsuario);
+        iniciaActividad(intent);
     }
 
     public void launchCalificacionActivity(int IDCalif) {
         Intent intent = new Intent(this, CalificacionActivity.class);
         intent.putExtra("ID_CALIFICACION", IDCalif);
+        iniciaActividad(intent);
+    }
+
+    private void iniciaActividad(Intent intent){
         startActivity(intent);
     }
 
