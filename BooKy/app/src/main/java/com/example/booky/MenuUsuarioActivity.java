@@ -61,7 +61,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
     }
 
     private void lanzaActividad(Intent intent){
-        intent.putExtra("USUARIO_CORREO", emailUsuario);
+        intent.putExtra("USUARIO_EMAIL", emailUsuario);
         startActivity(intent);
     }
 }

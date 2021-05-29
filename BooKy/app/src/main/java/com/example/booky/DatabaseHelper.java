@@ -204,27 +204,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean cambiarContrasenyaUsuario(Usuario newUsuario){
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString =    "UPDATE " + USUARIO_TABLA +
-                                " SET " + CONTRASENYA + " = " + newUsuario.getContrasenya() +
-                                " WHERE " + ID + " = " + newUsuario.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+                                " SET " + CONTRASENYA + " = '" + newUsuario.getContrasenya() +
+                                "' WHERE " + ID + " = " + newUsuario.getID();
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
     public boolean cambiarTelefonoUsuario(Usuario newUsuario){
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString =    "UPDATE " + USUARIO_TABLA +
-                                " SET " + TELF_USUARIO + " = " + newUsuario.getNumTelefono() +
-                                " WHERE " + ID + " = " + newUsuario.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+                                " SET " + TELF_USUARIO + " = '" + newUsuario.getNumTelefono() +
+                                "' WHERE " + ID + " = " + newUsuario.getID();
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
-    public boolean cambiarCorreoUsuario(Usuario newUsuario){
+    public boolean cambiarNombreUsuario(Usuario newUsuario){
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString =    "UPDATE " + USUARIO_TABLA +
-                                " SET " + EMAIL + " = " + newUsuario.getCorreo() +
-                                " WHERE " + ID + " = " + newUsuario.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+                " SET " + NOMBRE + " = '" + newUsuario.getNombre() +
+                "' WHERE " + ID + " = " + newUsuario.getID();
+        Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
