@@ -298,6 +298,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getPlato(String nombre){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + NOMBRE + " = '" + nombre + "'";
+        Cursor cursor = db.rawQuery(queryString, null);
+        return cursor;
+    }
+
     //MOSTRAR LOS PLATOS EN LISTA
     public List<Plato> get_lista_platos(){
 
