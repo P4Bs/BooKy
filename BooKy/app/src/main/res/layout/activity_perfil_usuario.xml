@@ -198,26 +198,26 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <ListView
+        android:id="@+id/listaReservas"
         android:layout_width="351dp"
         android:layout_height="236dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.632" />
+        app:layout_constraintTop_toBottomOf="@+id/actualizarDatos" />
 
     <Button
         android:id="@+id/actualizarDatos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginTop="8dp"
         android:background="#098BFF"
         android:text="Actualizar Datos"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailUsuario"
+        app:layout_constraintVertical_bias="0.023"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

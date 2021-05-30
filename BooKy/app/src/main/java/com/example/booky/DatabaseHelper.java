@@ -322,9 +322,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
             }while(cursor.moveToNext());
-        }else{
-
         }
+
         cursor.close();
         db.close();
         return returnlist;
@@ -353,9 +352,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Usuario usuarioactual = new Usuario(ID,Nombre,contraseña,telefono,email,admin);
                 returnlist.add(usuarioactual);
             }while(cursor.moveToNext());
-        }else{
-
         }
+
         cursor.close();
         db.close();
         return returnlist;
@@ -380,12 +378,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Calificacion nuevoComentario = new Calificacion(ID, usuarioID, platoID, notaPlato, comentarioPlato);
                 calificaciones.add(nuevoComentario);
             } while(cursor.moveToNext());
-        } else{
-
         }
+
         cursor.close();
         db.close();
         return calificaciones;
+    }
+
+    public List<Reserva> getListaReservas(int IDUsuario){
+        List<Reserva> reservas = new ArrayList<>();
+        String queryString = "SELECT * FROM " + RESERVA_TABLA + " WHERE " + USUARIO + " = " + IDUsuario;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                int ID = cursor.getInt(0);
+                int usuarioID = cursor.getInt(1);
+                String mesa = cursor.getString(2);
+                int dia = cursor.getInt(3);
+                int mes = cursor.getInt(4);
+                int ocupantes = cursor.getInt(5);
+                String intervalo = cursor.getString(6);
+
+                Reserva reserva = new Reserva(ID, usuarioID, Integer.parseInt(mesa), dia, mes, ocupantes, intervalo);
+                reservas.add(reserva);
+            } while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return reservas;
+    }
+
+    public List<Reserva> getTodasLasReservas(){
+        List<Reserva> reservas = new ArrayList<>();
+        String queryString = "SELECT * FROM " + RESERVA_TABLA;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                int ID = cursor.getInt(0);
+                int usuarioID = cursor.getInt(1);
+                String mesa = cursor.getString(2);
+                int dia = cursor.getInt(3);
+                int mes = cursor.getInt(4);
+                int ocupantes = cursor.getInt(5);
+                String intervalo = cursor.getString(6);
+
+                Reserva reserva = new Reserva(ID, usuarioID, Integer.parseInt(mesa), dia, mes, ocupantes, intervalo);
+                reservas.add(reserva);
+            } while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return reservas;
     }
 
     public Calificacion getCalificacion(int idCalficacion){

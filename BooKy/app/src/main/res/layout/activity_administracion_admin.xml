@@ -8,15 +8,13 @@
     tools:context=".AdministracionAdminActivity">
 
     <ListView
-        android:layout_width="370dp"
-        android:layout_height="211dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/reservasView"
+        android:layout_width="337dp"
+        android:layout_height="212dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView28"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <TextView
         android:id="@+id/textView21"
@@ -55,7 +53,7 @@
         android:id="@+id/textView28"
         android:layout_width="303dp"
         android:layout_height="61dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="232dp"
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="Reservas"
@@ -63,17 +61,21 @@
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/hola"
         android:layout_width="370dp"
         android:layout_height="211dp"
         android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView28"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

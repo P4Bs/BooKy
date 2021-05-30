@@ -2,13 +2,14 @@ package com.example.booky;
 
 public class Reserva {
     private int ID;
+    private int IDUsuario;
     private int Mesa;
     private int Dia;
     private int Mes;
     private int Ocupantes;
     private String intervaloTiempo;
 
-    public Reserva(int ID, int mesa, int Dia, int Mes, int ocupantes, String intervaloTiempo){
+    public Reserva(int ID, int IDUsuario, int mesa, int Dia, int Mes, int ocupantes, String intervaloTiempo){
         this.setID(ID);
         this.setMesa(mesa);
         this.setDia(Dia);
@@ -23,6 +24,14 @@ public class Reserva {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public int getIDUsuario() {
+        return IDUsuario;
+    }
+
+    public void setIDUsuario(int IDUsuario) {
+        this.ID = IDUsuario;
     }
 
     public int getMesa() {
@@ -63,5 +72,14 @@ public class Reserva {
 
     public void setIntervaloTiempo(String intervaloTiempo) {
         this.intervaloTiempo = intervaloTiempo;
+    }
+
+    @Override
+    public String toString(){
+        String salida =     "-Mesa: " + this.getMesa() + "\n" +
+                            "-Fecha:  " + this.getDia() + " / " + this.getMes() + " / 2021\n" +
+                            "-Numero Comensales: " + this.getOcupantes() + "\n" +
+                            "-Intervalo: " + this.getIntervaloTiempo();
+        return salida;
     }
 }

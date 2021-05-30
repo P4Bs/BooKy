@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,10 +30,7 @@ public class CartaAdminActivity extends AppCompatActivity {
         boton_añadir = findViewById(R.id.Añadir_plato);
 
         DatabaseHelper baseDeDatos = new DatabaseHelper(CartaAdminActivity.this);
-        List<Plato> todos_platos = baseDeDatos.get_lista_platos();
-
-        ArrayAdapter platosArray = new ArrayAdapter<Plato>(CartaAdminActivity.this, android.R.layout.simple_list_item_1, todos_platos);
-        lv_platoslist.setAdapter(platosArray);
+        actualizaPlatos(baseDeDatos);
 
 
         lv_platoslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,6 +46,7 @@ public class CartaAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 launchayadirplatoActivity(plato);
+                actualizaPlatos(baseDeDatos);
             }
         });
     }
@@ -61,5 +60,11 @@ public class CartaAdminActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PlatoAdminActivity.class);
         intent.putExtra("ID_PLATO", IDPlato);
         startActivity(intent);
+    }
+
+    public void actualizaPlatos(DatabaseHelper db){
+        List<Plato> todos_platos = db.get_lista_platos();
+        ArrayAdapter platosArray = new ArrayAdapter<Plato>(CartaAdminActivity.this, android.R.layout.simple_list_item_1, todos_platos);
+        lv_platoslist.setAdapter(platosArray);
     }
 }

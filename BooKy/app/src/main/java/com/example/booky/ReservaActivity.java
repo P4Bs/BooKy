@@ -63,8 +63,8 @@ public class ReservaActivity extends AppCompatActivity {
                             if(nOcupantes < 1 || nOcupantes > 8){
                                 Toast.makeText(getApplicationContext(), "El numero maximo de comensales es 8, bobo", Toast.LENGTH_SHORT).show();
                             } else{
-                                Reserva reserva = new Reserva(-1, mesa, diaMes, Mes, nOcupantes, turno);
                                 IDUsuario = getIDUsuario(db);
+                                Reserva reserva = new Reserva(-1, IDUsuario, mesa, diaMes, Mes, nOcupantes, turno);
                                 if(db.estaLaReserva(reserva)){
                                     Toast.makeText(getApplicationContext(), "No se puede realizar la reserva con esos datos. Seleccione otros", Toast.LENGTH_SHORT).show();
                                 } else{

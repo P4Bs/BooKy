@@ -7,10 +7,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class PerfilUsuarioActivity extends AppCompatActivity {
 
@@ -19,6 +24,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     TextView cuadroID, cuadroEmail;
     EditText editableNombre, editableContraseña, editableTelefono;
     Button actualizarCambios;
+    ListView listaReservas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +37,11 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         editableTelefono = findViewById(R.id.telfUsuario);
         cuadroEmail = findViewById(R.id.emailUsuario);
         actualizarCambios = findViewById(R.id.actualizarDatos);
+        listaReservas = findViewById(R.id.listaReservas);
 
+        DatabaseHelper baseDeDatos = new DatabaseHelper(PerfilUsuarioActivity.this);
         Intent intent = getIntent();
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
-        DatabaseHelper baseDeDatos = new DatabaseHelper(PerfilUsuarioActivity.this);
-
         Cursor datosUsuario = baseDeDatos.getDatosUsuario(emailUsuario);
 
         if(datosUsuario.moveToFirst()) {
@@ -48,6 +54,8 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             cuadroEmail.setText(emailUsuario);
             editableTelefono.setText(numTelf);
         }
+
+        cargaReservas(baseDeDatos, ID);
 
         actualizarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,5 +82,21 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Datos actualizados", Toast.LENGTH_LONG).show();
             }
         });
+
+        listaReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Reserva reservariarda = (Reserva) parent.getItemAtPosition(position);
+                baseDeDatos.borrarReserva(reservariarda);;
+                Toast.makeText(getApplicationContext(), "Reserva Eliminada", Toast.LENGTH_SHORT).show();
+                cargaReservas(baseDeDatos, ID);
+            }
+        });
+    }
+
+    public void cargaReservas(DatabaseHelper db, int IDUsuario){
+        List<Reserva> todasReservas = db.getListaReservas(IDUsuario);
+        ArrayAdapter reservasArray = new ArrayAdapter<>(PerfilUsuarioActivity.this, android.R.layout.simple_list_item_1, todasReservas);
+        listaReservas.setAdapter(reservasArray);
     }
 }
