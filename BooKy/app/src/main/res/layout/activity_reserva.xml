@@ -65,7 +65,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
-        android:hint="Mes(1-12)"
+        android:hint="Mes (1-12)"
         android:inputType="text"
         android:selectAllOnFocus="true"
         android:textColor="#FFFFFF"
@@ -120,7 +120,7 @@
             android:layout_width="183dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:text="Turno Noche"
+            android:text="12:00 - 16:00"
             tools:layout_editor_absoluteX="14dp"
             tools:layout_editor_absoluteY="616dp" />
 
@@ -129,7 +129,7 @@
             android:layout_width="184dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:text="Turno Mañana" />
+            android:text="18:00 - 00:00" />
 
     </RadioGroup>
 
