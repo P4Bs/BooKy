@@ -139,10 +139,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //TODO: BORRAR RESERVAS Y COMENTARIOS DEL USUARIO Y PERFIL USUARIO
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + USUARIO_TABLA + " WHERE " + USUARIO + " = " + usuario.getID();
+        String queryString = "DELETE FROM " + USUARIO_TABLA + " WHERE " + ID + " = " + usuario.getID();
         borraTodasLasReservas(db, usuario);
         borraTodosLasCalificacionesDelUsuario(db, usuario);
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
+        Cursor cursor = db.rawQuery(queryString, null);
 
         return cursor.moveToFirst();
     }
@@ -252,8 +252,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getDatosUsuario(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + EMAIL + " = '" + email + "'";
-        Cursor cursor = db.rawQuery(queryString, null);
-        return cursor;
+        return db.rawQuery(queryString, null);
+    }
+
+    public Cursor getDatosUsuario(int IDUsuario){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + USUARIO_TABLA + " WHERE " + ID + " = " + IDUsuario;
+        return db.rawQuery(queryString, null);
     }
 
     public boolean estaElUsuario(String email){
@@ -385,4 +390,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return calificaciones;
     }
 
+    public Calificacion getCalificacion(int idCalficacion){
+        String queryString = "SELECT * FROM " + CALIFICACION_TABLA + " WHERE " + ID + " = " + idCalficacion;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Calificacion calificacion = null;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst()){
+            int ID = cursor.getInt(0);
+            int usuarioID =  cursor.getInt(1);
+            int platoID = cursor.getInt(2);
+            String notaPlato = cursor.getString(3);
+            String comentarioPlato = cursor.getString(4);
+            calificacion = new Calificacion(ID, usuarioID, platoID, notaPlato, comentarioPlato);
+        }
+        return calificacion;
+    }
 }

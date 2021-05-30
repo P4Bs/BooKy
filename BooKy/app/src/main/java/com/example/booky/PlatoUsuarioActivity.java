@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.icu.number.LocalizedNumberFormatter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -72,6 +73,7 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 launchCreaCalificacionActivity();
+                recarga(baseDeDatos);
             }
         });
     }
@@ -93,4 +95,9 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void recarga(DatabaseHelper ayuda){
+        List<Calificacion> lista_Comentarios = ayuda.getListaComentarios(IDPlato);
+        ArrayAdapter calificacionesArray = new ArrayAdapter<>(PlatoUsuarioActivity.this, android.R.layout.simple_list_item_1, lista_Comentarios);
+        lv_comentarios.setAdapter(calificacionesArray);
+    }
 }

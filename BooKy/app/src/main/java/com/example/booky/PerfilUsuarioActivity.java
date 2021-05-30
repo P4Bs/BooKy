@@ -34,8 +34,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
-
-        Toast.makeText(getApplicationContext(), emailUsuario, Toast.LENGTH_SHORT).show();
         DatabaseHelper baseDeDatos = new DatabaseHelper(PerfilUsuarioActivity.this);
 
         Cursor datosUsuario = baseDeDatos.getDatosUsuario(emailUsuario);
@@ -58,6 +56,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                 if(!editableContraseña.getText().toString().equals("")){
                     Usuario userNuevaContraseña = new Usuario(ID, null, editableContraseña.getText().toString());
                     db.cambiarContrasenyaUsuario(userNuevaContraseña);
+                    editableContraseña.setText("");
                 }
 
                 if(!editableNombre.getText().toString().equals(nombre)){
@@ -72,7 +71,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                     db.cambiarTelefonoUsuario(userNuevoTelefono);
                 }
 
-                Toast.makeText(getApplicationContext(), "LOS DATOS FUERON ACTUALIZADOS CORRECTAMENTE", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Datos actualizados", Toast.LENGTH_LONG).show();
             }
         });
     }

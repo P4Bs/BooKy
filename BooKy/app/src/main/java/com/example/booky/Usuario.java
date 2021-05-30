@@ -90,7 +90,12 @@ public class Usuario {
     @Override
     public String toString(){
         String a = "";
-        a += "Id: " + ID + " .Nombre: " +nombre + " .Contraseña: " + contrasenya  + " .NumTelefono: " + NumTelefono + " .Correo: " + correo + " .Admin: " +esAdmin + ".";
+        a += "-ID: " + ID + "\n";
+        a += "-Nombre: " + nombre + "\n";
+        a += "-Contraseña: " + contrasenya + "\n";
+        a += "-NumTelefono: " + NumTelefono + "\n";
+        a += "-Correo: " + correo + "\n";
+        a += "-Es admin: " + esAdmin + "\n";
         return a ;
     }
 
