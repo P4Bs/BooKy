@@ -2,21 +2,19 @@ package com.example.booky;
 
 public class Reserva {
     private int ID;
-    private String Mesa;
+    private int Mesa;
     private int Dia;
     private int Mes;
     private int Ocupantes;
-    private boolean Cancelada;
     private String intervaloTiempo;
 
-    public Reserva(int ID, String mesa, int Dia, int Mes, int ocupantes, String intervaloTiempo){
+    public Reserva(int ID, int mesa, int Dia, int Mes, int ocupantes, String intervaloTiempo){
         this.setID(ID);
         this.setMesa(mesa);
         this.setDia(Dia);
         this.setMes(Mes);
         this.setOcupantes(ocupantes);
         this.setIntervaloTiempo(intervaloTiempo);
-        this.setCancelada(false);
     }
 
     public int getID() {
@@ -27,11 +25,11 @@ public class Reserva {
         this.ID = ID;
     }
 
-    public String getMesa() {
+    public int getMesa() {
         return Mesa;
     }
 
-    public void setMesa(String mesa) {
+    public void setMesa(int mesa) {
         Mesa = mesa;
     }
 
@@ -57,14 +55,6 @@ public class Reserva {
 
     public void setOcupantes(int ocupantes) {
         Ocupantes = ocupantes;
-    }
-
-    public boolean isCancelada() {
-        return Cancelada;
-    }
-
-    public void setCancelada(boolean cancelada) {
-        Cancelada = cancelada;
     }
 
     public String getIntervaloTiempo() {

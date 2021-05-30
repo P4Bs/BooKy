@@ -92,16 +92,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ImageView
         android:id="@+id/numeroOcupantes"
-        android:layout_width="396dp"
-        android:layout_height="507dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="380dp"
+        android:layout_height="465dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sin_nombre" />
-
 
     <RadioGroup
         android:id="@+id/radioGroupTipoLugar"

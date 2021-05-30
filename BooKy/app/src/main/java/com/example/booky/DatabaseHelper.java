@@ -97,17 +97,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
-    public boolean anyadeReserva(Reserva reserva, Usuario usuario){
+    public boolean anyadeReserva(Reserva reserva, int IDUsuario){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(USUARIO, usuario.getID());
+        cv.put(USUARIO, IDUsuario);
         cv.put(MESA, reserva.getMesa());
         cv.put(DIA_MES, reserva.getDia());
         cv.put(MES, reserva.getMes());
-        // cv.put(FECHA_RES, reserva.getFecha());
         cv.put(OCUPANTES, reserva.getOcupantes());
-        cv.put(RES_CANCEL, reserva.isCancelada());
         cv.put(INT_TIEMP, reserva.getIntervaloTiempo());
 
         long insert = db.insert(RESERVA_TABLA, null, cv);
@@ -405,5 +403,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             calificacion = new Calificacion(ID, usuarioID, platoID, notaPlato, comentarioPlato);
         }
         return calificacion;
+    }
+
+    public boolean estaLaReserva(Reserva reserva){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String quaryString = "SELECT * FROM " + RESERVA_TABLA + " WHERE "   + DIA_MES + " = " + reserva.getDia() + " AND "
+                                                                            + MES + " = " + reserva.getMes() + " AND "
+                                                                            + MESA + " = '" + reserva.getMesa() + "' AND "
+                                                                            + INT_TIEMP + " = '" + reserva.getIntervaloTiempo() + "'";
+        Cursor cursor = db.rawQuery(quaryString, null);
+        return cursor.moveToFirst();
     }
 }

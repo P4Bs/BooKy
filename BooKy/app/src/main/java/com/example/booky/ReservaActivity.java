@@ -2,16 +2,22 @@ package com.example.booky;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class ReservaActivity extends AppCompatActivity {
 
-    EditText num_ocupantes, num_mesa;
-    RadioButton turno1 ,turno2;
+    EditText num_ocupantes, num_mesa, dia_Mes, mes;
+    RadioButton turnoMañana ,turnoTarde;
     Button añadir;
+    String emailUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,39 +26,80 @@ public class ReservaActivity extends AppCompatActivity {
 
         num_ocupantes = findViewById(R.id.numeroComensales);
         num_mesa = findViewById(R.id.numeroMesa);
-        turno1 = findViewById(R.id.turnoNoche);
-        turno2 = findViewById(R.id.turnoMañana);
+        dia_Mes = findViewById(R.id.diaMes);
+        mes = findViewById(R.id.numeroMes);
+        turnoMañana = findViewById(R.id.turnoNoche);
+        turnoTarde = findViewById(R.id.turnoMañana);
         añadir = findViewById(R.id.botonReserva);
 
-       /* añadir.setOnClickListener(new View.OnClickListener() {
+        DatabaseHelper db = new DatabaseHelper(ReservaActivity.this);
+        Intent intent = getIntent();
+        emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
+
+        añadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(num_ocupantes.getText().toString().equals("") || num_mesa.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
-                }else if(Integer.valueOf(num_mesa.getText().toString()) > 5 || Integer.valueOf(num_mesa.getText().toString()) < 0){
-                    Toast.makeText(getApplicationContext(), "Solo tenemos 5 mesas", Toast.LENGTH_SHORT).show();
-                }else{
-                    DatabaseHelper databaseHelper = new DatabaseHelper(ReservaActivity.this);
-                    String num_ocupantes_reserva, num_mesa_reserva,turno_reserva;
-                    num_ocupantes_reserva = num_ocupantes.getText().toString();
-                    num_mesa_reserva = num_mesa.getText().toString();
-                    if(turno1.isChecked()){
-                        turno_reserva = "Turno Mañana";
-                    }else if(turno2.isChecked()){
-                        turno_reserva = "Turno Noche";
+                int nOcupantes, diaMes, Mes, mesa, IDUsuario;
+                String turno;
+
+                try{
+                    nOcupantes = Integer.parseInt(num_ocupantes.getText().toString());
+                    diaMes = Integer.parseInt(dia_Mes.getText().toString());
+                    Mes = Integer.parseInt(mes.getText().toString());
+                    mesa = Integer.parseInt(num_mesa.getText().toString());
+
+                    if(turnoMañana.isChecked()){
+                        turno = "Turno Mañana";
+                    } else{
+                        turno = "Turno Tarde";
                     }
 
-                    if(databaseHelper.estaELplato(nombreplato)){
-                        Toast.makeText(getApplicationContext(), "El Plato indicado ya está en la base de datos", Toast.LENGTH_SHORT).show();
+                    if(mesa < 1 || mesa > 5){
+                        Toast.makeText(getApplicationContext(), "Pon bien el numero de mesa, bobo", Toast.LENGTH_SHORT).show();
                     } else{
-                        Plato nuevoPlato = new Plato(-1,nombreplato,descripcionplato,alergenosplatos,Integer.parseInt(precioplato));
-                        databaseHelper.anyadePlato(nuevoPlato);
-                        Toast.makeText(getApplicationContext(), "Plato añadido Exitososamente", Toast.LENGTH_SHORT).show();
+                        if(!estaBienLaFecha(diaMes, Mes)){
+                            Toast.makeText(getApplicationContext(), "Pon la fecha bien, bobo", Toast.LENGTH_SHORT).show();
+                        } else{
+                            if(nOcupantes < 1 || nOcupantes > 8){
+                                Toast.makeText(getApplicationContext(), "El numero maximo de comensales es 8, bobo", Toast.LENGTH_SHORT).show();
+                            } else{
+                                Reserva reserva = new Reserva(-1, mesa, diaMes, Mes, nOcupantes, turno);
+                                IDUsuario = getIDUsuario(db);
+                                if(db.estaLaReserva(reserva)){
+                                    Toast.makeText(getApplicationContext(), "No se puede realizar la reserva con esos datos. Seleccione otros", Toast.LENGTH_SHORT).show();
+                                } else{
+                                    boolean seMetio = db.anyadeReserva(reserva, IDUsuario);
+                                    if(seMetio){
+                                        Toast.makeText(getApplicationContext(), "La reserva fue realizada satisfactoriamente :D", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        }
                     }
+                } catch(NumberFormatException e){
+                    Toast.makeText(getApplicationContext(), "Pon bien los datos, bobo", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-*/
+    }
 
+    private boolean estaBienLaFecha(int dia, int mes){
+        if(dia > 31 || dia < 1 || mes < 1 || mes > 12){
+            return false;
+        } else{
+            if(mes == 2 && dia > 28){
+                return false;
+            } else if (dia > 30 && (mes % 2) != 0){
+                return false;
+            } else{
+                return true;
+            }
+        }
+    }
+
+    private int getIDUsuario(DatabaseHelper db){
+        Cursor cursor = db.getDatosUsuario(emailUsuario);
+        cursor.moveToFirst();
+        return cursor.getInt(0);
     }
 }
