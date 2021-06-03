@@ -70,12 +70,4 @@ public class Plato {
         a += "-Precio: " + this.Precio + " €";
         return a;
     }
-
-    private static byte[] getBitmapAsByteArray(Bitmap bitmap){
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        return outputStream.toByteArray();
-    }
-
-
 }
