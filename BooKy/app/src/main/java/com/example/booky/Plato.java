@@ -63,9 +63,15 @@ public class Plato {
     
     @Override
     public String toString() {
+        String descripcion;
+        if(this.Descripcion.length() > 40){
+            descripcion = this.Descripcion.substring(0, 40) + "...";
+        } else{
+            descripcion = this.getDescripcion();
+        }
         String a = "";
         a += "-Nombre: " + this.Nombre + "\n";
-        a += "-Descripcion: " + this.Descripcion + "\n";
+        a += "-Descripcion: " + descripcion + "\n";
         a += "-Alergenos: " + this.Alergenos + "\n";
         a += "-Precio: " + this.Precio + " €";
         return a;

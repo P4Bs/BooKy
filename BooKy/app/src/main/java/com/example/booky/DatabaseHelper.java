@@ -63,11 +63,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(crearTablaReserva);
         db.execSQL(crearTablaCalificacion);
 
+        anyadeDatosDeInicio(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    private void anyadeDatosDeInicio(SQLiteDatabase db){
+        Plato plato = new Plato(-1,"lasaña","La lasaña se prepara con láminas de pastas cuadradas crudas o precocidas, que se colocan en capas una sobre otra y entre las que se agrega carne molida de vacuno sazonada y cocida.\n" +
+                                "Sobre las camas de carne entre capas se añade queso mozzarella rallado y salsa bechamel, para dar sabor y compactar mejor.","Queso,Carne","16,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Risotto alla milanese","Sus ingredientes principales son el arroz y el toque de queso parmesano. Su textura cremosa combinada con el sabor del queso hace de este plato una experiencia culinaria inigualable.Otros ingredientes clave para su preparación son las espinacas, los mariscos, setas y otros quesos. También el ajo y la cebolla fina entre aceite de oliva, el azafrán para dar color y como toque especial, un chorrito de vino blanco.","azafrán","19,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Carpaccio","El carpaccio es una de las comidas típicas al norte de Italia. Consiste en carne o pescado crudo cortado en láminas finas que se maceran con aceite de oliva y zumo de limón o vinagre y se acompaña con sal y queso parmesano.","Salmón,vinagre,queso","24,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Minestrone","La de minestrone no es más que una suculenta sopa de verduras con un poco de pasta o sémola de arroz, que se come caliente y espesa como plato principal. Está considerada una comida con alto valor nutricional por la variedad de verduras y vegetales.","apio,pollo,tocino","21,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Pizza Margarita","Se cree que la pizza proviene del pan, pues en la Roma antigua se hacía redondo y cortado en porciones cónicas, al que le agregaban una salsa a base de tomates con virutas de queso mozzarella esparcido por encima.","queso","13,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Ensalada capresse","plato de vegetales frescos que se sirve como entrada, aperitivo o pasaboca, ideal para días de verano,una de las ensaladas más típicas la cúal proviene de la region de Crapi","queso","12,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Ossobuco","También conocido como jarrete de ternera o como ossobuco a la milanesa, se cocina guisando la carne con tomate, cebolla y zanahoria; se adereza con ajo, romero, laurel, pimienta y sal. El toque final es un poco de vino blanco. Lo que le diferencia de otras carnes es que su cantidad de grasa es la necesaria para lograr una carne jugosa y suculenta.","cebolla,ajo,romero,laurel","29,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Espaguetis a la carbonara","Una de las pastas más representativas de la gastronomía italiana. La pasta carbonara con la salsa carbonara original la cual tiene queso pecorino,huevos,guancile,pimienta y sal","queso,huevo","19,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Fainá con carne y berenjena","una clase de pizza elaborada con harina a base de garbanzos que se cree es originaria de Génova. Se pronuncia “farinata”, aunque para el genovés es fainá.","pimienta","22,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Agnolotti","los “primos” de los raviolis ,  se distinguen por su forma cuadrada y pequeñez. Están rellenos con salsas de carnes de res o de cerdo o de una mezcla de salvia, mantequilla y queso parmesano.","salvia","14,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"espagueti all’amatriciana","Pasta fina con un orificio cubierto de la famosa salsa amatriciana, preparada con una base de guanciale (trozos de carrillo de cerdo) acompañados de tomate, aceite de oliva y queso pecorino rallado.","queso","13,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"La polenta","Plato que bien se puede comer solo o acompañado de pescados, hongos, estofado, mariscos, salames, verduras, tomate o queso. Es una comida muy versátil, al punto de que se puede considerar una clase porcion de pizzas.","mariscos","24,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Vincisgrassi","Se prepara con láminas cuadradas o rectangulares de pasta al huevo. Las capas estan rellenadas  con una salsa elaborada de varios tipos de carne picada de cerdo, vacuno, salchichas, hígados de pollo, cebolla, apio y zanahoria. Todo con sal y pimienta.","pimienta,apio,cebolla","19,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Arancini","Son bolas fritas en aceite de oliva elaboradas de arroz, cebolla, carne de cerdo, queso pecorino o parmesano y huevo, que quedan como croquetas.","huevo,queso","19,99");
+        anyadePlato(plato, db);
+        plato = new Plato(-1,"Guiso a la casteddaia","El guiso a la casteddaia consiste en un plato de pintarroja, un tipo de tiburón gato también llamado gato marino o alitán. Este guiso de tiburón gato se prepara entre vinagre de vino blanco y nueces y se cocina con hojas de laurel, ingrediente que le da un sabor particular. ","nueces","39,99");
+        anyadePlato(plato, db);
+    }
+
+
+    private boolean anyadePlato(Plato plato, SQLiteDatabase db){
+        ContentValues cv = new ContentValues();
+
+        cv.put(NOMBRE, plato.getNombre());
+        cv.put(DESC_PLATO, plato.getDescripcion());
+        cv.put(ALERG_PLATO, plato.getAlergenos());
+        cv.put(PRECIO, plato.getPrecio());
+
+        long insert = db.insert(CARTA_TABLA, null, cv);
+        return insert != -1;
     }
 
     public boolean anyadeUsuario(Usuario user){ //Añade un usuario a la base de datos
@@ -96,6 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long insert = db.insert(CARTA_TABLA, null, cv);
         return insert != -1;
     }
+
 
     public boolean anyadeReserva(Reserva reserva, int IDUsuario){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -215,33 +264,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
-
-    // ESTE METODO GENERALIZA EL CAMBIO DE LOS DATOS DEL PLATO
-    // CUANDO EL ADMIN QUIERE CAMBIAR DATOS DEL PLATO SE ENCUENTRA CON UNA VENTANA CON LOS DATOS INTRODUCIDOS
-    // EL ADMIN HACE CAMBIOS EN LOS CAMPOS QUE DESEA CAMBIAR Y SE SOBREESCRIBEN TODAS LAS COLUMNAS DE ESA TUPLA
-    public boolean cambiarDatosPlato(Plato newPlato){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String queryString =    "UPDATE " + CARTA_TABLA +
-                                " SET " +   NOMBRE + " = " + newPlato.getNombre() + ", " +
-                                            DESC_PLATO + " = " + newPlato.getDescripcion() + ", " +
-                                            ALERG_PLATO + " = " + newPlato.getAlergenos() + ", " +
-                                            PRECIO + " = " + newPlato.getPrecio() +
-                                " WHERE " + ID + " = " + newPlato.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
-        return cursor.moveToFirst();
-    }
-
-    //EL METODO DE CAMBIO DE DATOS DE UNA CALIFICACION TIENE LA MISMA ESTRUCTURA QUE EL DE CAMBIO DE DATOS DE PLATO
-    public boolean cambiarDatosCalificacion(Calificacion newCalificacion){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String queryString =    "UPDATE " + CALIFICACION_TABLA +
-                                " SET " +   NOTA + " = " + newCalificacion.getNota() + ", " +
-                                            COMENTARIO + " = " + newCalificacion.getComentario() +
-                                " WHERE " + ID + " = " + newCalificacion.getID();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(queryString, null);
-        return cursor.moveToFirst();
-    }
-
 
     /*
         TODO: BUSCAR USUARIOS

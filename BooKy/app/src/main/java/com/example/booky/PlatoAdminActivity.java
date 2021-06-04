@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +18,8 @@ import java.util.List;
 
 public class PlatoAdminActivity extends AppCompatActivity {
 
-    String nombrePlato, descripcionPlato, alergenosPlato;
-    int precioPlato, IDPlato;
+    String nombrePlato, descripcionPlato, alergenosPlato, precioPlato;
+    int IDPlato;
     TextView cuadroNombrePlato, cuadroDescripcionPlato, cuadroAlergenosPlato, cuadroPrecio;
     ListView lv_comentarios;
     Button borraPlato;
@@ -36,6 +37,8 @@ public class PlatoAdminActivity extends AppCompatActivity {
         borraPlato = findViewById(R.id.borrarPlato);
         lv_comentarios = findViewById(R.id.listaComentariosAdmin);
 
+        cuadroDescripcionPlato.setMovementMethod(new ScrollingMovementMethod());
+
         Intent intent = getIntent();
 
         IDPlato = intent.getIntExtra("ID_PLATO", 0);
@@ -46,10 +49,10 @@ public class PlatoAdminActivity extends AppCompatActivity {
             nombrePlato = plato.getString(1);
             descripcionPlato = plato.getString(2);
             alergenosPlato = plato.getString(3);
-            precioPlato = plato.getInt(4);
+            precioPlato = plato.getString(4);
 
             cuadroNombrePlato.setText(nombrePlato);
-            cuadroDescripcionPlato.setText("Descripcion:  " + descripcionPlato);
+            cuadroDescripcionPlato.setText(descripcionPlato);
             cuadroAlergenosPlato.setText("Alergenos: " + alergenosPlato);
             cuadroPrecio.setText("Precio: " + precioPlato + "€");
 

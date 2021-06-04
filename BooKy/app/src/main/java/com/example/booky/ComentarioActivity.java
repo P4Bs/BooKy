@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ public class ComentarioActivity extends AppCompatActivity {
         cuadroNota = findViewById(R.id.calificacionComentario);
         cuadroComentario = findViewById(R.id.comentarioComentario);
         añadirComentario = findViewById(R.id.introduceElComentario);
+
+        cuadroComentario.setMovementMethod(new ScrollingMovementMethod());
 
         DatabaseHelper db = new DatabaseHelper(ComentarioActivity.this);
         Intent intent = getIntent();

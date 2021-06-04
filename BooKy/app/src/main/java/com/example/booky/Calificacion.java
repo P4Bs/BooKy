@@ -57,10 +57,16 @@ public class Calificacion {
 
     @Override
     public String toString() {
+        String comentario;
+        if(this.Comentario.length() > 40){
+            comentario = this.Comentario.substring(0, 40) + "...";
+        } else{
+            comentario = this.getComentario();
+        }
         String a = "";
         a += "-IDUsuario: " + this.IDUsuario + "\n";
         a += "-Calificacion: " + this.Nota + "/10\n";
-        a += "-Comentario: " + this.Comentario + "\n";
+        a += "-Comentario: " + comentario + "\n";
         return a;
     }
 }

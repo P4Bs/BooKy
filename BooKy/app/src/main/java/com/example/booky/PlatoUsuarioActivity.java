@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.icu.number.LocalizedNumberFormatter;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,7 +19,8 @@ import java.util.List;
 public class PlatoUsuarioActivity extends AppCompatActivity {
 
     String nombrePlato, descripcionPlato, alergenosPlato, emailUsuario;
-    int precioPlato, IDPlato;
+    int IDPlato;
+    String precioPlato;
     TextView cuadroNombrePlato, cuadroDescripcionPlato, cuadroAlergenosPlato, cuadroPrecio;
     ListView lv_comentarios;
     Button añadeComentario;
@@ -36,6 +38,7 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
         lv_comentarios = findViewById(R.id.listaComentarios);
         añadeComentario = findViewById(R.id.añadeComentario);
 
+        cuadroDescripcionPlato.setMovementMethod(new ScrollingMovementMethod());
         Intent intent = getIntent();
         IDPlato = intent.getIntExtra("ID_PLATO", 0);
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
@@ -47,10 +50,10 @@ public class PlatoUsuarioActivity extends AppCompatActivity {
             nombrePlato = plato.getString(1);
             descripcionPlato = plato.getString(2);
             alergenosPlato = plato.getString(3);
-            precioPlato = plato.getInt(4);
+            precioPlato = plato.getString(4);
 
             cuadroNombrePlato.setText(nombrePlato);
-            cuadroDescripcionPlato.setText("Descripcion:  " + descripcionPlato);
+            cuadroDescripcionPlato.setText(descripcionPlato);
             cuadroAlergenosPlato.setText("Alergenos: " + alergenosPlato);
             cuadroPrecio.setText("Precio: " + precioPlato + "€");
 
