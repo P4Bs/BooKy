@@ -36,49 +36,46 @@ public class ReservaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         emailUsuario = intent.getStringExtra("USUARIO_EMAIL");
 
-        añadir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int nOcupantes, diaMes, Mes, mesa, IDUsuario;
-                String turno;
+        añadir.setOnClickListener(v -> {
+            int nOcupantes, diaMes, Mes, mesa, IDUsuario;
+            String turno;
 
-                try{
-                    nOcupantes = Integer.parseInt(num_ocupantes.getText().toString());
-                    diaMes = Integer.parseInt(dia_Mes.getText().toString());
-                    Mes = Integer.parseInt(mes.getText().toString());
-                    mesa = Integer.parseInt(num_mesa.getText().toString());
+            try{
+                nOcupantes = Integer.parseInt(num_ocupantes.getText().toString());
+                diaMes = Integer.parseInt(dia_Mes.getText().toString());
+                Mes = Integer.parseInt(mes.getText().toString());
+                mesa = Integer.parseInt(num_mesa.getText().toString());
 
-                    if(turnoMañana.isChecked()){
-                        turno = "Turno Mañana";
+                if(turnoMañana.isChecked()){
+                    turno = "Turno Mañana";
+                } else{
+                    turno = "Turno Tarde";
+                }
+
+                if(mesa < 1 || mesa > 5){
+                    Toast.makeText(getApplicationContext(), "El numero de mesa debe estar entre 1 y 5", Toast.LENGTH_SHORT).show();
+                } else{
+                    if(!estaBienLaFecha(diaMes, Mes)){
+                        Toast.makeText(getApplicationContext(), "La fecha introducida es invalida", Toast.LENGTH_SHORT).show();
                     } else{
-                        turno = "Turno Tarde";
-                    }
-
-                    if(mesa < 1 || mesa > 5){
-                        Toast.makeText(getApplicationContext(), "Pon bien el numero de mesa, bobo", Toast.LENGTH_SHORT).show();
-                    } else{
-                        if(!estaBienLaFecha(diaMes, Mes)){
-                            Toast.makeText(getApplicationContext(), "Pon la fecha bien, bobo", Toast.LENGTH_SHORT).show();
+                        if(nOcupantes < 1 || nOcupantes > 8){
+                            Toast.makeText(getApplicationContext(), "El máximo número de comensales es 8", Toast.LENGTH_SHORT).show();
                         } else{
-                            if(nOcupantes < 1 || nOcupantes > 8){
-                                Toast.makeText(getApplicationContext(), "El numero maximo de comensales es 8, bobo", Toast.LENGTH_SHORT).show();
+                            IDUsuario = getIDUsuario(db);
+                            Reserva reserva = new Reserva(-1, IDUsuario, mesa, diaMes, Mes, nOcupantes, turno);
+                            if(db.estaLaReserva(reserva)){
+                                Toast.makeText(getApplicationContext(), "Ya hay una reserva realizada con esos datos. Seleccione otros", Toast.LENGTH_SHORT).show();
                             } else{
-                                IDUsuario = getIDUsuario(db);
-                                Reserva reserva = new Reserva(-1, IDUsuario, mesa, diaMes, Mes, nOcupantes, turno);
-                                if(db.estaLaReserva(reserva)){
-                                    Toast.makeText(getApplicationContext(), "No se puede realizar la reserva con esos datos. Seleccione otros", Toast.LENGTH_SHORT).show();
-                                } else{
-                                    boolean seMetio = db.anyadeReserva(reserva, IDUsuario);
-                                    if(seMetio){
-                                        Toast.makeText(getApplicationContext(), "La reserva fue realizada satisfactoriamente :D", Toast.LENGTH_SHORT).show();
-                                    }
+                                boolean seMetio = db.anyadeReserva(reserva, IDUsuario);
+                                if(seMetio){
+                                    Toast.makeText(getApplicationContext(), "La reserva fue realizada satisfactoriamente", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
                     }
-                } catch(NumberFormatException e){
-                    Toast.makeText(getApplicationContext(), "Pon bien los datos, bobo", Toast.LENGTH_SHORT).show();
                 }
+            } catch(NumberFormatException e){
+                Toast.makeText(getApplicationContext(), "Hay un error en los datos", Toast.LENGTH_SHORT).show();
             }
         });
     }

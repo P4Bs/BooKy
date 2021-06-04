@@ -32,28 +32,22 @@ public class AdministracionAdminActivity extends AppCompatActivity {
 
         recarga(baseDeDatos);
 
-        usuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Usuario usuariardo = (Usuario) parent.getItemAtPosition(position);
-                if(usuariardo.getCorreo().compareTo(correoUsario) == 0){
-                    Toast.makeText(getApplicationContext(), "¿Eres bobo o que? No te puedes eliminar a ti mismo", Toast.LENGTH_SHORT).show();
-                } else{
-                    baseDeDatos.borraUsuario(usuariardo);
-                    Toast.makeText(getApplicationContext(), "Usuario Eliminado", Toast.LENGTH_SHORT).show();
-                    recarga(baseDeDatos);
-                }
+        usuarios.setOnItemClickListener((parent, view, position, id) -> {
+            Usuario usuariardo = (Usuario) parent.getItemAtPosition(position);
+            if(usuariardo.getCorreo().compareTo(correoUsario) == 0){
+                Toast.makeText(getApplicationContext(), "No puedes eliminarte a ti mismo", Toast.LENGTH_SHORT).show();
+            } else{
+                baseDeDatos.borraUsuario(usuariardo);
+                Toast.makeText(getApplicationContext(), "Usuario Eliminado", Toast.LENGTH_SHORT).show();
+                recarga(baseDeDatos);
             }
         });
 
-        reservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Reserva reservariarda = (Reserva) parent.getItemAtPosition(position);
-                baseDeDatos.borrarReserva(reservariarda);;
-                Toast.makeText(getApplicationContext(), "Reserva Eliminada", Toast.LENGTH_SHORT).show();
-                recarga(baseDeDatos);
-            }
+        reservas.setOnItemClickListener((parent, view, position, id) -> {
+            Reserva reservariarda = (Reserva) parent.getItemAtPosition(position);
+            baseDeDatos.borrarReserva(reservariarda);;
+            Toast.makeText(getApplicationContext(), "Reserva Eliminada", Toast.LENGTH_SHORT).show();
+            recarga(baseDeDatos);
         });
     }
 
