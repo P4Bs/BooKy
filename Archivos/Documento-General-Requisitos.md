@@ -2,7 +2,8 @@
 ![](https://github.com/pabloMoreno-uma/g5-restaurante/blob/master/imagenes/booky.png)
 ### HISTORIAL DE REVISIONES
   * Primera Version - 1.0 (Fecha. 24 de Abril de 2021)
-  * Segunda Version - 2.0 (Fecha. 05 de junio de 2021)
+  * Segunda Version - 2.0 (Fecha. 05 de Junio de 2021)
+  * Primera Revisión Segunda Version - 2.1 (Fecha. 06 de Junio de 2021)
 
 ### INTRODUCCIÓN
 - #### PROPÓSITO
@@ -30,28 +31,28 @@
 ### REQUISITOS ESPECIFICOS
 - #### REQUISITOS FUNCIONALES
     * RF.1) Los usuarios están clasificados en 2 niveles
-        * **Usuario Registrado**. Puede  ver la carta con los platos (valoraciones y comentarios incluidos). Puede configurar distintos aspectos, su foto de perfil, su nombre de usuario y su contraseña. Todo usuario tendrá un número de identificación único.
-        * **Administrador**. Tiene las mismas funciones que el usuario registrado, además de añadir y eliminar platos, cancelar reservas y suspender a usuarios.
-    * RF.2) El usuario puede realizar una reserva en el restaurante de una mesa para un día y una hora determinadas (siempre y cuando sea posible).  
-        * El usuario podrá cancelar la reserva realizada (siempre y cuando la reserva no haya caducado).
-    * RF.3) EL usuario dispone de su propio perfil, en el que podrá observar su nombre de usuario, sus datos y sus reservas. Ademas podrá modificar sus datos personales en cualquier momento.
+        * **Usuario Registrado**. Puede  ver la carta con los platos (valoraciones y comentarios incluidos). Puede configurar distintos aspectos: su nombre de usuario, su contraseña y su número de teléfono. Todo usuario tendrá un número de identificación único.
+        * **Administrador**. Tiene las mismas funciones que el usuario registrado, además de añadir y eliminar platos, cancelar reservas y eliminar a usuarios.
+    * RF.2) El usuario puede realizar una reserva en el restaurante de una mesa en una fecha específica: dia, mes y turno, ya sea de mañana o de tarde, para un número de comensales de 1 a 8. No podrá realizar una reserva si ya existe una reserva realizada en la misma mesa a la misma fecha.
+    * RF.3) El usuario dispone de su propio perfil, en el que podrá observar su nombre de usuario, sus datos y sus reservas.
+      * El usuario podrá eliminar sus reservas desde dicho perfil, pulsando la que desee eliminar.
     * RF.4) El usuario puede ver la carta.
-      * El usuario en la carta podra insertar comentarios y calificacion sobre los platos del menu.
-      * Los platos de la carta llevan indicados sus respectivos precios, alérgenos y sus calificaciones.
-      * Los platos llevarán asociados sus mini-reviews. Las mini-reviews consisten en una calificación (entre 0 y 10) y en un comentario.
-    * RF.5) El administrador debe poder insertar nuevos platos en la carta , a su vez tambien  debe er capaz de eliminarlos de la lista
-    * RF.6) El administrador debe poder eliminar las reservas de cualquier usuario
-    * RF.7) El administrador debe poder eliminar cualquier usuario registrado en la app que no sea el mismo.
-    * RF.8) El Usuario Registrado debe poder eliminar las reservas que tenga hechas desde su perfil
+      * Podra insertar calificaciones; las cuales constan de nota, esta puede tomar valores entre 0 y 10, y comentario, en cualquier plato del menu. Las calificaciones no podrán ser borradas.
+      * Los platos de la carta llevan indicados su descripción, precio, alérgenos y calificaciones.
+    * RF.5) El administrador dispone de la función de insertar nuevos platos en la carta, a su vez tambien dispone de la funcionalidad de eliminarlos de la lista.
+      * No podrá añadir un plato con el mismo nombre que otro que ya se encuentre dentro de la carta.
+    * RF.6) El administrador dispone de la función de eliminar las reservas de cualquier usuario
+    * RF.7) El administrador dispone de la función de eliminar usuarios de la app.
+      * El administrador no se puede eliminar a si mismo.
 
 
 - #### REQUISITOS NO FUNCIONALES
     * RNF.1) La aplicación estará programada en JAVA.
-    * RNF.2) La arquitectura de la aplicación estará basada en sistema cliente-servidor.
+    * RNF.2) La arquitectura de la aplicación estará basada en cliente-servidor.
     * RNF.3) La aplicación debe estar optimizada.
       * No debe pesar demasiado.
       * No debe consumir mucha CPU.
     * RNF.4) La aplicación debe almacenar de forma segura los credenciales de sesión de los usuarios.
-      * El email de registro no puede ser semejante a uno ya registrado.
-      * Las contraseñas serán almacenadas en la base de datos tras ser cifradas con el cifrado de SHA1.
-    * RNF.5) La aplicación estará disponible para moviles android ve versiones superiores a kitkat 4.4 .
+      * El email de registro no puede estar ya almacenado en la base de datos.
+      * Las contraseñas serán almacenadas en la base de datos tras ser cifradas con el algoritmo de encriptación SHA1.
+    * RNF.5) La aplicación estará disponible para dispositivos móviles Android en versiones 4.4 KitKat o superiores.
