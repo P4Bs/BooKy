@@ -9,7 +9,7 @@ public class Reserva {
     private int Ocupantes;
     private String intervaloTiempo;
 
-    public Reserva(int ID, int IDUsuario, int mesa, int Dia, int Mes, int ocupantes, String intervaloTiempo){
+    public Reserva(int ID, int mesa, int Dia, int Mes, int ocupantes, String intervaloTiempo){
         this.setID(ID);
         this.setMesa(mesa);
         this.setDia(Dia);

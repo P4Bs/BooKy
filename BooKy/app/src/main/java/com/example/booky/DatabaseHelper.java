@@ -1,17 +1,13 @@
 package com.example.booky;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.strictmode.SqliteObjectLeakedViolation;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.sql.SQLInput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,9 +49,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Method called first time database is accessed. All table creations must be coded here.
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String crearTablaUsuario = "CREATE TABLE " + USUARIO_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT, CONTRASEÑA TEXT, NUM_TELEFONO TEXT, EMAIL TEXT, ES_ADMINISTRADOR BOOL);"; //FALTA IMAGEN
+        String crearTablaUsuario = "CREATE TABLE " + USUARIO_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT, CONTRASEÑA TEXT, NUM_TELEFONO TEXT, EMAIL TEXT UNIQUE, ES_ADMINISTRADOR BOOL);"; //FALTA IMAGEN
         String crearTablaCarta = "CREATE TABLE " + CARTA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE TEXT UNIQUE, DESCRIPCION TEXT, ALERGENOS TEXT, PRECIO TEXT);";
-        String crearTablaReserva = "CREATE TABLE " + RESERVA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, MESA TEXT, DIA INT, MES INT, OCUPANTES INT, INTERVALO_TIEMPO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID));";
+        String crearTablaReserva = "CREATE TABLE " + RESERVA_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, MESA TEXT UNIQUE, DIA INT UNIQUE, MES INT UNIQUE, OCUPANTES INT, INTERVALO_TIEMPO TEXT UNIQUE, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID));";
         String crearTablaCalificacion = "CREATE TABLE " + CALIFICACION_TABLA + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USUARIO INTEGER, PLATO INTEGER, NOTA TEXT, COMENTARIO TEXT, FOREIGN KEY(USUARIO) REFERENCES USUARIO(ID), FOREIGN KEY(PLATO) REFERENCES CARTA(ID));";
 
         db.execSQL(crearTablaUsuario);
@@ -103,6 +99,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         anyadePlato(plato, db);
         plato = new Plato(-1,"Guiso a la casteddaia","El guiso a la casteddaia consiste en un plato de pintarroja, un tipo de tiburón gato también llamado gato marino o alitán. Este guiso de tiburón gato se prepara entre vinagre de vino blanco y nueces y se cocina con hojas de laurel, ingrediente que le da un sabor particular. ","nueces","39,99");
         anyadePlato(plato, db);
+
+        Usuario usuario_prueba = new Usuario(-1, "Usuario de Prueba", "pruebesita", "+34678234567", "usuarioPrueba@gmail.com", false);
+        anyadeUsuario(usuario_prueba);
+
+        Reserva reserva_prueba = new Reserva(-1, 1, 16, 3, 4, "Turno Mañana");
+        anyadeReserva(reserva_prueba, 1);
     }
 
 
@@ -424,7 +426,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int ocupantes = cursor.getInt(5);
                 String intervalo = cursor.getString(6);
 
-                Reserva reserva = new Reserva(ID, usuarioID, Integer.parseInt(mesa), dia, mes, ocupantes, intervalo);
+                Reserva reserva = new Reserva(ID, Integer.parseInt(mesa), dia, mes, ocupantes, intervalo);
                 reservas.add(reserva);
             } while(cursor.moveToNext());
         }
@@ -451,7 +453,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int ocupantes = cursor.getInt(5);
                 String intervalo = cursor.getString(6);
 
-                Reserva reserva = new Reserva(ID, usuarioID, Integer.parseInt(mesa), dia, mes, ocupantes, intervalo);
+                Reserva reserva = new Reserva(ID, Integer.parseInt(mesa), dia, mes, ocupantes, intervalo);
                 reservas.add(reserva);
             } while(cursor.moveToNext());
         }

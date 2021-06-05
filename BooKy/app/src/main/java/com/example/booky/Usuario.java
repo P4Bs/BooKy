@@ -2,7 +2,6 @@ package com.example.booky;
 
 import android.graphics.Bitmap;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -24,7 +23,7 @@ public class Usuario {
         this.contrasenya = getSHA1(contrasenya);
     }
 
-    public Usuario(int ID, String nombre, String contrasenya,String NumTelefono, String correo, boolean esAdmin ){
+    public Usuario(int ID, String nombre, String contrasenya, String NumTelefono, String correo, boolean esAdmin ){
         this.ID = ID;
         this.esAdmin = esAdmin;
         this.nombre = nombre;
