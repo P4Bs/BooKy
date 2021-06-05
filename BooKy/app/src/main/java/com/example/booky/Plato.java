@@ -1,13 +1,5 @@
 package com.example.booky;
 
-import android.graphics.Bitmap;
-
-import androidx.annotation.NonNull;
-
-import java.io.ByteArrayOutputStream;
-import java.util.List;
-import java.util.StringJoiner;
-
 public class Plato {
     private int ID;
     private String Nombre;

@@ -100,11 +100,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         plato = new Plato(-1,"Guiso a la casteddaia","El guiso a la casteddaia consiste en un plato de pintarroja, un tipo de tiburón gato también llamado gato marino o alitán. Este guiso de tiburón gato se prepara entre vinagre de vino blanco y nueces y se cocina con hojas de laurel, ingrediente que le da un sabor particular. ","nueces","39,99");
         anyadePlato(plato, db);
 
-        Usuario usuario_prueba = new Usuario(-1, "Usuario de Prueba", "pruebesita", "+34678234567", "usuarioPrueba@gmail.com", false);
-        anyadeUsuario(usuario_prueba);
-
-        Reserva reserva_prueba = new Reserva(-1, 1, 16, 3, 4, "Turno Mañana");
-        anyadeReserva(reserva_prueba, 1);
+        Usuario admin = new Usuario(-1, "Administrador", "admin1234", "+34655123456", "admin@gmail.com", true);
+        anyadeUsuario(admin, db);
     }
 
 
@@ -120,6 +117,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
+    public boolean anyadeUsuario(Usuario user, SQLiteDatabase db){ //Añade un usuario a la base de datos
+        ContentValues cv = new ContentValues();
+
+        cv.put(NOMBRE, user.getNombre());
+        cv.put(CONTRASENYA, user.getContrasenya());
+        cv.put(TELF_USUARIO, user.getNumTelefono());
+        cv.put(EMAIL, user.getCorreo());
+        cv.put(USUARIO_ADMIN, user.isEsAdmin());
+
+        long insert = db.insert(USUARIO_TABLA, null, cv);
+        return insert != -1;
+    }
     public boolean anyadeUsuario(Usuario user){ //Añade un usuario a la base de datos
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -202,8 +211,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.moveToFirst();
     }
 
+    private boolean borraTodasLasReservas(SQLiteDatabase db, int IDUsuario){
+        String queryString = "DELETE FROM " + RESERVA_TABLA + " WHERE " + USUARIO + " = " + IDUsuario;
+        Cursor cursor = db.rawQuery(queryString, null);
+        return cursor.moveToFirst();
+    }
+
     private boolean borraTodosLasCalificacionesDelUsuario(SQLiteDatabase db, Usuario usuario){
         String queryString = "DELETE FROM " + CALIFICACION_TABLA + " WHERE " + USUARIO + " = " + usuario.getID();
+        Cursor cursor = db.rawQuery(queryString, null);
+        return cursor.moveToFirst();
+    }
+
+    private boolean borraTodosLasCalificacionesDelUsuario(SQLiteDatabase db, int IDUsuario){
+        String queryString = "DELETE FROM " + CALIFICACION_TABLA + " WHERE " + USUARIO + " = " + IDUsuario;
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
@@ -381,7 +402,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnlist;
-
     }
 
     public List<Calificacion> getListaComentarios(int IDPlato){
@@ -478,6 +498,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             calificacion = new Calificacion(ID, usuarioID, platoID, notaPlato, comentarioPlato);
         }
         return calificacion;
+    }
+
+    public int getIDPlato(String nombre){
+        String queryString = "SELECT * FROM " + CARTA_TABLA + " WHERE " + NOMBRE + " = '" + nombre + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+        int IDPlato = 0;
+        if(cursor.moveToFirst()){
+             IDPlato = cursor.getInt(0);
+        }
+        return IDPlato;
     }
 
     public boolean estaLaReserva(Reserva reserva){

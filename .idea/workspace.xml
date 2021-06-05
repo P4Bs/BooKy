@@ -12,9 +12,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b4c1790-66ad-48b8-9fa7-45d973275f4f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0b4c1790-66ad-48b8-9fa7-45d973275f4f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,10 +47,11 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="628" y="257" key="AndroidCreateXmlResourceDialog/0.0.1536.864@0.0.1536.864" timestamp="1622220248350" />
-    <state x="592" y="228" key="FileChooserDialogImpl" timestamp="1622220923262">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1622924387533">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="592" y="228" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1622220923262" />
+    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1622924387533" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1622150611816" />
     <state x="293" y="78" key="SettingsEditor" timestamp="1622220683648">
       <screen x="0" y="0" width="1536" height="864" />
