@@ -1,16 +1,19 @@
 package com.example.booky;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
-import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 public class ComentarioActivity extends AppCompatActivity {
 
@@ -44,6 +47,7 @@ public class ComentarioActivity extends AppCompatActivity {
                 int IDUsuario;
 
                 Cursor datosUsuario = db.getDatosUsuario(emailUsuario);
+                /*
                 if(datosUsuario.moveToFirst()){
                     IDUsuario = datosUsuario.getInt(0);
                     if(nota.contains(".")) {
@@ -56,6 +60,32 @@ public class ComentarioActivity extends AppCompatActivity {
                         } else{
                             Toast.makeText(getApplicationContext(), "Hubo Un Error", Toast.LENGTH_SHORT).show();
                         }
+                    }
+                }
+                */
+
+                if(datosUsuario.moveToFirst()){
+                    try {
+                        IDUsuario = datosUsuario.getInt(0);
+                        NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
+
+                        double notaUsuario = format.parse(nota).doubleValue();
+
+                        if(notaUsuario > 10){
+                           Toast.makeText(getApplicationContext(), "La nota debe ser entre 0 y 10", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if(nota.charAt(0) == ','){
+                                nota = "0" + nota;
+                            }
+                            Calificacion cali = new Calificacion(-1, IDUsuario, IDPlato, nota, comentario);
+                            if (db.anyadeCalificacion(cali)) {
+                                Toast.makeText(getApplicationContext(), "Calificacion añadida", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Hubo Un Error", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    } catch (ParseException e) {
+                        Toast.makeText(getApplicationContext(), "Por favor, rellene el campo de nota", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

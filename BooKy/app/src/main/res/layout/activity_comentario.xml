@@ -32,7 +32,7 @@
         android:layout_marginRight="4dp"
         android:hint="*Su nota va aquí*"
         android:inputType="number"
-        android:digits="0123456789.,"
+        android:digits="0123456789,"
         android:selectAllOnFocus="true"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
