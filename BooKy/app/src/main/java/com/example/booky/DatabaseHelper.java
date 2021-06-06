@@ -99,6 +99,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         anyadePlato(plato, db);
         plato = new Plato(-1,"Guiso a la casteddaia","El guiso a la casteddaia consiste en un plato de pintarroja, un tipo de tiburón gato también llamado gato marino o alitán. Este guiso de tiburón gato se prepara entre vinagre de vino blanco y nueces y se cocina con hojas de laurel, ingrediente que le da un sabor particular. ","nueces","39,99");
         anyadePlato(plato, db);
+        plato = new Plato(-1,"Plato de Prueba","Este es el plato de la demo","Ninguno","5,99");
+        anyadePlato(plato, db);
 
         Usuario admin = new Usuario(-1, "Administrador", "admin1234", "+34655123456", "admin@gmail.com", true);
         anyadeUsuario(admin, db);

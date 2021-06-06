@@ -47,23 +47,6 @@ public class ComentarioActivity extends AppCompatActivity {
                 int IDUsuario;
 
                 Cursor datosUsuario = db.getDatosUsuario(emailUsuario);
-                /*
-                if(datosUsuario.moveToFirst()){
-                    IDUsuario = datosUsuario.getInt(0);
-                    if(nota.contains(".")) {
-                        Toast.makeText(getApplicationContext(), "La calificacion debe ser con coma", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Calificacion cali = new Calificacion(-1, IDUsuario, IDPlato, nota, comentario);
-                        if(db.anyadeCalificacion(cali)){
-                            Toast.makeText(getApplicationContext(), "Calificacion añadida", Toast.LENGTH_SHORT).show();
-                        } else{
-                            Toast.makeText(getApplicationContext(), "Hubo Un Error", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-                */
-
                 if(datosUsuario.moveToFirst()){
                     try {
                         IDUsuario = datosUsuario.getInt(0);
