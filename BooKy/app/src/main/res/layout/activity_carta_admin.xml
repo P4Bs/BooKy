@@ -25,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="cursive"
         android:gravity="center"
-        android:text="Carta Admin"
+        android:text="Carta"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="60sp"
