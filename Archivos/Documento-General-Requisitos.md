@@ -22,8 +22,8 @@
 
 - #### RESTRICCIONES
     Las principales restricciones de nuestro proyecto de software son: 
-    * -> Nuestro desconocimiento de programar en plataformas Android, así como el uso de los respectivos programas requeridos.
-    * -> Así mismo, otra restricción fundamental es el no poder realizar reuniones presenciales por debido a la pandemia del COVID-19.
+    * Nuestro desconocimiento de programar en plataformas Android, así como el uso de los respectivos programas requeridos.
+    * Así mismo, otra restricción fundamental es el no poder realizar reuniones presenciales por debido a la pandemia del COVID-19.
 
 - #### REQUISITOS FUTUROS
     * Enviar un email de bienvenida al usuario cuando se registra.
