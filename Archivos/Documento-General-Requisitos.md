@@ -22,11 +22,12 @@
 
 - #### RESTRICCIONES
     Las principales restricciones de nuestro proyecto de software son: 
-    -> Nuestro desconocimiento de programar en plataformas Android, así como el uso de los respectivos programas requeridos.
-    -> Así mismo, otra restricción fundamental es el no poder quedar de forma presencial por culpa de la pandemia vírica que nos acontece.
+    * -> Nuestro desconocimiento de programar en plataformas Android, así como el uso de los respectivos programas requeridos.
+    * -> Así mismo, otra restricción fundamental es el no poder realizar reuniones presenciales por debido a la pandemia del COVID-19.
 
 - #### REQUISITOS FUTUROS
-    Podriamos implementar en un futuro una funcionalidad de cupones, basada en la fidelidad del usuario.
+    * Enviar un email de bienvenida al usuario cuando se registra.
+    * Avisar al usuario de que una reserva suya ha sido borrada por el administrador o que su perfil ha sido eliminado de la base de datos por medio de SMS.
 
 ### REQUISITOS ESPECIFICOS
 - #### REQUISITOS FUNCIONALES

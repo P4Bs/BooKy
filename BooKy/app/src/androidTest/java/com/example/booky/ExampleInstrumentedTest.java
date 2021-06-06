@@ -91,7 +91,7 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void G_siSeAñdeUnaReservaElNumeroDeReservasAumenta(){
+    public void G_siSeAñadeUnaReservaElNumeroDeReservasAumenta(){
         List<Usuario> usuarios = db.get_lista_usuarios(); //En la lista se encuentran dos usuarios, el administrador (se introduce una vez se inicia la app por primera vez
                                                             // y nuestro usuario de prueba
         Usuario nuestroUsuario = usuarios.get(usuarios.size() - 1); //Nuestro usuario de prueba es el ultimo que añadimos
