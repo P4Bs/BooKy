@@ -1,4 +1,4 @@
-# g5-restaurante
+# g5-BooKy
 ## MIEMBROS
 - Angel García Lozano
 - Francisco Javier Coca Sores
